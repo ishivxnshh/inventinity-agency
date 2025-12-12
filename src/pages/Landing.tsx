@@ -9,6 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CustomCursor } from "@/components/CustomCursor";
+import { FloatingElements } from "@/components/FloatingElements";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
+import { GlowCard } from "@/components/GlowCard";
 import {
   Code2,
   Smartphone,
@@ -20,7 +23,10 @@ import {
   CheckCircle2,
   Star,
   Linkedin,
-  Filter,
+  Zap,
+  Clock,
+  Users,
+  Trophy,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -190,7 +196,10 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Noise texture overlay */}
+      <div className="noise-overlay" />
+      
       <CustomCursor />
       <Navbar />
 
@@ -203,6 +212,7 @@ const Landing = () => {
 
         <div className="absolute inset-0 bg-gradient-mesh"></div>
         <div className="absolute inset-0 bg-gradient-spotlight"></div>
+        <FloatingElements />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
           <motion.div
@@ -210,97 +220,145 @@ const Landing = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20">
-              🚀 Full-Stack Digital Agency
-            </Badge>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 animate-pulse-glow">
+                <Zap className="w-3 h-3 mr-1" />
+                Full-Stack Digital Agency
+              </Badge>
+            </motion.div>
             
-            <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              <span className="gradient-text">Full-Stack Digital Agency</span>
+            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+              <motion.span 
+                className="gradient-text inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                Build. Launch. Grow.
+              </motion.span>
               <br />
-              <span className="text-foreground">for Web, Apps, AI & Growth</span>
+              <motion.span 
+                className="text-foreground inline-block"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                All-in-One.
+              </motion.span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+            <motion.p 
+              className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
               We build websites, apps, AI solutions, and handle everything from branding to marketing.
-              End-to-end execution from idea to launch.
-            </p>
+              <span className="text-foreground font-medium"> End-to-end execution</span> from idea to launch.
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+            >
               <Button
                 variant="hero"
                 size="lg"
                 onClick={() => scrollToSection("contact")}
-                className="group"
+                className="group relative overflow-hidden"
               >
-                Book a Call
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                <span className="relative z-10 flex items-center">
+                  Book a Call
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => scrollToSection("portfolio")}
+                className="border-primary/30 hover:border-primary/50 hover:bg-primary/5"
               >
                 View Our Work
               </Button>
-            </div>
+            </motion.div>
 
-            {/* Trusted by logos */}
-            <div className="mt-20">
-              <p className="text-sm text-muted-foreground mb-6 uppercase tracking-wider">
-                Trusted by innovative companies
-              </p>
-              <div className="flex flex-wrap justify-center gap-8 opacity-50">
-                {["TechCorp", "StartupXYZ", "InnovateCo", "DigitalPro"].map((brand) => (
-                  <div key={brand} className="font-display text-xl font-semibold">
-                    {brand}
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Stats Section */}
+            <motion.div 
+              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
+              <AnimatedCounter end={50} suffix="+" label="Projects Delivered" />
+              <AnimatedCounter end={98} suffix="%" label="Client Satisfaction" />
+              <AnimatedCounter end={24} suffix="h" label="Avg Response Time" />
+              <AnimatedCounter end={15} suffix="+" label="Team Experts" />
+            </motion.div>
           </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
+            <motion.div 
+              className="w-1.5 h-1.5 rounded-full bg-primary"
+              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </div>
+        </motion.div>
       </section>
 
       {/* USP Section */}
-      <section className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 relative overflow-hidden">
+        <FloatingElements />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="text-center mb-12"
           >
-            {whyChooseUs.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
-                <Card className="glass hover-glow transition-all h-full">
-                  <CardContent className="p-6">
-                    <CheckCircle2 className="w-10 h-10 text-accent mb-4" />
-                    <h3 className="font-display font-semibold text-lg mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+              Why Choose <span className="gradient-text">Inventinity</span>?
+            </h2>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whyChooseUs.map((item, index) => (
+              <GlowCard key={index} delay={index * 0.1} glowColor={index === 1 ? "accent" : "primary"}>
+                <div className="p-6">
+                  <div className={`w-12 h-12 rounded-xl ${index === 1 ? "bg-accent/20" : "bg-primary/20"} flex items-center justify-center mb-4`}>
+                    {index === 0 && <Users className="w-6 h-6 text-primary" />}
+                    {index === 1 && <Sparkles className="w-6 h-6 text-accent" />}
+                    {index === 2 && <Trophy className="w-6 h-6 text-primary" />}
+                    {index === 3 && <Clock className="w-6 h-6 text-primary" />}
+                  </div>
+                  <h3 className="font-display font-semibold text-lg mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                </div>
+              </GlowCard>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-gradient-mesh relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="services" className="py-24 bg-gradient-mesh relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -308,6 +366,9 @@ const Landing = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
+            <Badge className="mb-4 bg-secondary border-primary/20">
+              What We Do
+            </Badge>
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
               <span className="gradient-text">Our Services</span>
             </h2>
@@ -318,60 +379,51 @@ const Landing = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: index * 0.1,
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
+              <GlowCard 
+                key={index} 
+                delay={index * 0.1} 
+                glowColor={service.color === "accent" ? "accent" : "primary"}
+                className="h-full"
               >
-                <Card className="glass-strong hover-glow transition-all h-full group cursor-pointer">
-                  <CardContent className="p-8">
-                    <div
-                      className={`w-14 h-14 rounded-2xl ${
-                        service.color === "accent" ? "bg-accent/20" : "bg-primary/20"
-                      } flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}
-                    >
-                      <service.icon
-                        className={`w-7 h-7 ${
-                          service.color === "accent" ? "text-accent" : "text-primary"
-                        }`}
-                      />
-                    </div>
-                    
-                    <h3 className="font-display font-semibold text-xl mb-3">
-                      {service.title}
-                    </h3>
-                    
-                    <p className="text-muted-foreground mb-6">{service.description}</p>
+                <div className="p-8">
+                  <div
+                    className={`w-14 h-14 rounded-2xl ${
+                      service.color === "accent" ? "bg-accent/20" : "bg-primary/20"
+                    } flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}
+                  >
+                    <service.icon
+                      className={`w-7 h-7 ${
+                        service.color === "accent" ? "text-accent" : "text-primary"
+                      }`}
+                    />
+                  </div>
+                  
+                  <h3 className="font-display font-semibold text-xl mb-3">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-6">{service.description}</p>
 
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium text-foreground/70 mb-2">
-                        Deliverables:
-                      </p>
-                      {service.deliverables.map((item, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-accent" />
-                          <span className="text-sm text-muted-foreground">{item}</span>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium text-foreground/70 mb-2">
+                      Deliverables:
+                    </p>
+                    {service.deliverables.map((item, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-accent" />
+                        <span className="text-sm text-muted-foreground">{item}</span>
+                      </div>
+                    ))}
+                  </div>
 
-                    <div className="mt-6 pt-6 border-t border-border">
-                      <p className="text-sm text-muted-foreground">
-                        Starting at{" "}
-                        <span className="text-foreground font-semibold">
-                          Competitive rates
-                        </span>
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  <div className="mt-6 pt-6 border-t border-border/50">
+                    <Button variant="ghost" className="w-full group" size="sm">
+                      Learn More
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </div>
+              </GlowCard>
             ))}
           </div>
         </div>
@@ -421,29 +473,17 @@ const Landing = () => {
                 icon: TrendingUp,
               },
             ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: index * 0.1,
-                  duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
-                <Card className="glass-strong hover:accent-glow hover:border-accent/50 transition-all duration-300 h-full">
-                  <CardContent className="p-8">
-                    <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
-                      <item.icon className="w-7 h-7 text-accent" />
-                    </div>
-                    <h3 className="font-display font-semibold text-xl mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+              <GlowCard key={index} delay={index * 0.1} glowColor="accent">
+                <div className="p-8">
+                  <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
+                    <item.icon className="w-7 h-7 text-accent" />
+                  </div>
+                  <h3 className="font-display font-semibold text-xl mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              </GlowCard>
             ))}
           </div>
         </div>
@@ -484,42 +524,31 @@ const Landing = () => {
           {/* Portfolio Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: index * 0.1,
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
-                <Card className="glass-strong hover-glow overflow-hidden group cursor-pointer h-full">
-                  <div className="aspect-video bg-gradient-primary/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Sparkles className="w-12 h-12 text-primary/50" />
+              <GlowCard key={project.title} delay={index * 0.1} className="overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Sparkles className="w-12 h-12 text-primary/50 group-hover:scale-110 transition-transform" />
+                </div>
+                <div className="p-6">
+                  <div className="flex gap-2 mb-3">
+                    {project.tags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant="outline"
+                        className="text-xs border-primary/20 bg-primary/5"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
-                  <CardContent className="p-6">
-                    <div className="flex gap-2 mb-3">
-                      {project.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="outline"
-                          className="text-xs border-primary/20"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    <h3 className="font-display font-semibold text-lg mb-2">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {project.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  <h3 className="font-display font-semibold text-lg mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {project.description}
+                  </p>
+                </div>
+              </GlowCard>
             ))}
           </div>
         </div>
@@ -548,53 +577,55 @@ const Landing = () => {
 
           {/* Team Grid */}
           <div className="mt-20">
-            <h3 className="font-display text-3xl font-bold text-center mb-12">
-              Meet the Team
-            </h3>
+            <motion.h3 
+              className="font-display text-3xl font-bold text-center mb-12"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              Meet the <span className="gradient-text">Team</span>
+            </motion.h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamMembers.map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ 
-                    delay: index * 0.1,
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                >
-                  <Card className="glass-strong hover-glow text-center h-full">
-                    <CardContent className="p-6">
-                      <div className="w-24 h-24 rounded-full bg-gradient-primary mx-auto mb-4 flex items-center justify-center">
-                        <span className="text-3xl font-bold text-white">
-                          {member.name.charAt(0)}
-                        </span>
+                <GlowCard key={member.name} delay={index * 0.1} className="text-center">
+                  <div className="p-6">
+                    <div className="relative w-24 h-24 mx-auto mb-4">
+                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent p-0.5">
+                        <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
+                          <span className="text-3xl font-bold gradient-text">
+                            {member.name.charAt(0)}
+                          </span>
+                        </div>
                       </div>
-                      
-                      <h4 className="font-display font-semibold text-lg mb-1">
-                        {member.name}
-                      </h4>
-                      
-                      <p className="text-sm text-primary mb-3">{member.role}</p>
-                      
-                      <p className="text-sm text-muted-foreground mb-4">
-                        {member.bio}
-                      </p>
+                      {index === 0 && (
+                        <div className="absolute -top-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
+                          <Star className="w-3 h-3 text-accent-foreground" />
+                        </div>
+                      )}
+                    </div>
+                    
+                    <h4 className="font-display font-semibold text-lg mb-1">
+                      {member.name}
+                    </h4>
+                    
+                    <p className="text-sm text-primary mb-3">{member.role}</p>
+                    
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {member.bio}
+                    </p>
 
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
-                      >
-                        <Linkedin className="w-4 h-4" />
-                        LinkedIn
-                      </a>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors link-underline"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      Connect
+                    </a>
+                  </div>
+                </GlowCard>
               ))}
             </div>
           </div>
@@ -624,74 +655,53 @@ const Landing = () => {
               {
                 tier: "Starter",
                 description: "Perfect for small projects and MVPs",
-                features: [
-                  "Single service focus",
-                  "2-week turnaround",
-                  "Basic support",
-                  "1 revision round",
-                ],
+                features: ["Single service focus", "2-week turnaround", "Basic support", "1 revision round"],
+                popular: false,
               },
               {
                 tier: "Growth",
                 description: "For growing businesses",
-                features: [
-                  "Multi-service packages",
-                  "Priority support",
-                  "Unlimited revisions",
-                  "Ongoing optimization",
-                ],
+                features: ["Multi-service packages", "Priority support", "Unlimited revisions", "Ongoing optimization"],
+                popular: true,
               },
               {
                 tier: "Scale",
                 description: "Enterprise solutions",
-                features: [
-                  "End-to-end execution",
-                  "Dedicated team",
-                  "24/7 support",
-                  "Custom SLAs",
-                ],
+                features: ["End-to-end execution", "Dedicated team", "24/7 support", "Custom SLAs"],
+                popular: false,
               },
             ].map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ 
-                  delay: index * 0.1,
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                whileHover={{ scale: 1.02 }}
+              <GlowCard 
+                key={plan.tier} 
+                delay={index * 0.1} 
+                glowColor={plan.popular ? "accent" : "primary"}
+                className={`h-full ${plan.popular ? "ring-2 ring-accent/50" : ""}`}
               >
-                <Card className="h-full glass-strong hover-glow hover:border-primary/50 transition-all duration-300">
-                  <CardContent className="p-8">
-                    
-                    <h3 className="font-display text-2xl font-bold mb-2">
-                      {plan.tier}
-                    </h3>
-                    
-                    <p className="text-muted-foreground mb-6">{plan.description}</p>
-
-                    <div className="space-y-3 mb-8">
-                      {plan.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                          <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                          <span className="text-sm">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <Button
-                      variant="outline"
-                      className="w-full"
-                      onClick={() => scrollToSection("contact")}
-                    >
-                      Get Quote
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <div className="p-8 relative">
+                  {plan.popular && (
+                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground">
+                      Most Popular
+                    </Badge>
+                  )}
+                  <h3 className="font-display text-2xl font-bold mb-2">{plan.tier}</h3>
+                  <p className="text-muted-foreground mb-6">{plan.description}</p>
+                  <div className="space-y-3 mb-8">
+                    {plan.features.map((feature, i) => (
+                      <div key={i} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                        <span className="text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <Button
+                    variant={plan.popular ? "hero" : "outline"}
+                    className="w-full"
+                    onClick={() => scrollToSection("contact")}
+                  >
+                    Get Quote
+                  </Button>
+                </div>
+              </GlowCard>
             ))}
           </div>
         </div>
