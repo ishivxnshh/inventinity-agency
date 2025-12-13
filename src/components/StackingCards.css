@@ -152,6 +152,34 @@
   transition: transform 0.4s ease;
 }
 
-.stack-card:hover .stack-circle-container {
-  transform: scale(1.1);
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  .stack-container {
+    height: auto;
+    flex-direction: column;
+    padding: 1rem 0;
+    align-items: center;
+    gap: 1.5rem; /* Space between cards vertically */
+  }
+
+  .stack-card {
+    height: 320px;
+    width: 100%;
+    max-width: 340px; 
+    margin-right: 0 !important; /* Force remove negative margin */
+    /* Maintain nice shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .stack-card:hover {
+    transform: translateY(-5px); /* Subtle lift on tap/hover */
+    margin-right: 0;
+    margin-left: 0;
+    /* No horizontal shifting on mobile */
+  }
+
+  /* Disable the sibling push effect on mobile */
+  .stack-card:hover~.stack-card {
+    transform: none;
+  }
 }

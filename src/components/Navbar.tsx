@@ -185,7 +185,13 @@ export const Navbar = () => {
         <div className="bg-background/80 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl rounded-full px-6 py-3 flex items-center gap-8 md:gap-12">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link 
+            to="/" 
+            className="flex items-center gap-3 group"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <div className="relative w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full border border-primary/20 group-hover:bg-primary/20 transition-colors">
               <svg
                 viewBox="0 0 24 24"

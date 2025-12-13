@@ -398,20 +398,7 @@ const Landing = () => {
       {/* Portfolio Section */}
       <section id="portfolio" className="py-24 bg-gradient-mesh">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              <span className="gradient-text">Our Work</span>
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Real projects, real results
-            </p>
-          </motion.div>
+
 
           {/* Filter Bar */}
           {/* Portfolio 3D Carousel */}
