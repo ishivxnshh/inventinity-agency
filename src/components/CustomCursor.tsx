@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
+  const [hasMovedMouse, setHasMovedMouse] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
+      setHasMovedMouse(true);
 
       // Check if hovering over interactive elements
       const target = e.target as HTMLElement;
@@ -23,6 +25,8 @@ export const CustomCursor = () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  if (!hasMovedMouse) return null;
 
   return (
     <>
