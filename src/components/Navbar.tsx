@@ -31,7 +31,19 @@ export const Navbar = () => {
     
     // If not on landing page, navigate there first with the hash
     if (location.pathname !== "/") {
-      navigate("/" + href);
+      navigate("/");
+      // Wait for navigation then scroll
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          const navbarHeight = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementPosition - navbarHeight,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
       return;
     }
     
@@ -73,6 +85,7 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.href}
+                  onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
                   className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors relative group"
                 >
                   {link.name}
@@ -132,7 +145,10 @@ export const Navbar = () => {
                   <Link
                     key={link.name}
                     to={link.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: "instant" });
+                    }}
                     className="block w-full text-left py-2 text-foreground/80 hover:text-foreground transition-colors"
                   >
                     {link.name}
