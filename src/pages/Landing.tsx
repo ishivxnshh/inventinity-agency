@@ -8,10 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { CustomCursor } from "@/components/CustomCursor";
-import { FloatingElements } from "@/components/FloatingElements";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GlowCard } from "@/components/GlowCard";
+import { StackingCards } from "@/components/StackingCards";
+import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { AntigravityHero } from "@/components/AntigravityHero";
 import {
   Code2,
   Smartphone,
@@ -29,10 +30,6 @@ import {
   Trophy,
 } from "lucide-react";
 import { useState } from "react";
-
-const Hero3D = lazy(() =>
-  import("@/components/Hero3D").then((module) => ({ default: module.Hero3D }))
-);
 
 const Landing = () => {
   const [selectedFilter, setSelectedFilter] = useState("All");
@@ -90,51 +87,39 @@ const Landing = () => {
     },
   ];
 
-  const portfolioFilters = ["All", "Web", "Apps", "AI", "Design", "Marketing"];
-  
+  // const portfolioFilters = ["All", "Web", "Apps", "AI", "Design", "Marketing"];
+
   const portfolioProjects = [
     {
       title: "E-Commerce Platform",
       description: "Modern online store with AI recommendations",
-      tags: ["Web", "AI"],
-      image: "placeholder",
+      tags: ["Web", "Design"],
+      image: "/work0.png",
     },
     {
-      title: "Fitness Tracking App",
-      description: "Cross-platform mobile app with real-time analytics",
+      title: "Fitness Tracker App",
+      description: "Fast, responsive mobile application",
       tags: ["Apps"],
-      image: "placeholder",
+      image: "/work1.png",
     },
     {
       title: "AI Chatbot Assistant",
       description: "Intelligent customer support automation",
       tags: ["AI"],
-      image: "placeholder",
+      image: "/work2.png",
     },
     {
       title: "Brand Identity Redesign",
       description: "Complete rebrand for tech startup",
       tags: ["Design"],
-      image: "placeholder",
-    },
-    {
-      title: "SaaS Marketing Campaign",
-      description: "Multi-channel growth strategy",
-      tags: ["Marketing"],
-      image: "placeholder",
-    },
-    {
-      title: "Restaurant Booking System",
-      description: "Full-stack web app with payment integration",
-      tags: ["Web"],
-      image: "placeholder",
+      image: "/work3.png",
     },
   ];
 
-  const filteredProjects =
-    selectedFilter === "All"
-      ? portfolioProjects
-      : portfolioProjects.filter((project) => project.tags.includes(selectedFilter));
+  // const filteredProjects =
+  //   selectedFilter === "All"
+  //     ? portfolioProjects
+  //     : portfolioProjects.filter((project) => project.tags.includes(selectedFilter));
 
   const teamMembers = [
     {
@@ -196,104 +181,83 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Noise texture overlay */}
-      <div className="noise-overlay" />
-      
-      <CustomCursor />
+    <div className="min-h-screen bg-background relative selection:bg-primary/20">
+      <div className="bg-noise"></div>
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        {/* 3D Background */}
-        <Suspense fallback={<div className="absolute inset-0 bg-gradient-mesh"></div>}>
-          <Hero3D />
-        </Suspense>
-
-        <div className="absolute inset-0 bg-gradient-mesh"></div>
-        <div className="absolute inset-0 bg-gradient-spotlight"></div>
-        <FloatingElements />
-
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-16 bg-background overflow-hidden">
+        <AntigravityHero />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8 }}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <Badge className="mb-6 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 animate-pulse-glow">
+              <Badge className="mb-6 bg-secondary text-primary border-primary/20 hover:bg-secondary/80">
                 <Zap className="w-3 h-3 mr-1" />
                 Full-Stack Digital Agency
               </Badge>
             </motion.div>
-            
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
-              <motion.span 
-                className="gradient-text inline-block"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-                Build. Launch. Grow.
-              </motion.span>
+
+            <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-foreground">
+              We Build Scalable
               <br />
-              <motion.span 
-                className="text-foreground inline-block"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
-                All-in-One.
-              </motion.span>
+              <span className="text-primary relative inline-block">
+                Digital Products
+                <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+                </svg>
+              </span>
             </h1>
-            
-            <motion.p 
+
+            <motion.p
               className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              transition={{ delay: 0.4 }}
             >
-              We build websites, apps, AI solutions, and handle everything from branding to marketing.
-              <span className="text-foreground font-medium"> End-to-end execution</span> from idea to launch.
+              From mvp to enterprise scale, we handle design, development, and AI integration.
+              <span className="text-foreground font-medium block mt-2"> Your full-stack partner for digital growth.</span>
             </motion.p>
 
-            <motion.div 
+            <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              transition={{ delay: 0.5 }}
             >
               <Button
-                variant="hero"
                 size="lg"
                 onClick={() => scrollToSection("contact")}
-                className="group relative overflow-hidden"
+                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base shadow-lg shadow-primary/20"
               >
                 <span className="relative z-10 flex items-center">
-                  Book a Call
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  Book a Strategy Call
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Button>
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => scrollToSection("portfolio")}
-                className="border-primary/30 hover:border-primary/50 hover:bg-primary/5"
+                className="h-12 px-8 text-base border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300"
               >
-                View Our Work
+                View Selected Work
               </Button>
             </motion.div>
 
             {/* Stats Section */}
-            <motion.div 
-              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+            <motion.div
+              className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto border-t border-border/50 pt-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.6 }}
             >
               <AnimatedCounter end={50} suffix="+" label="Projects Delivered" />
               <AnimatedCounter end={98} suffix="%" label="Client Satisfaction" />
@@ -302,36 +266,20 @@ const Landing = () => {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-            <motion.div 
-              className="w-1.5 h-1.5 rounded-full bg-primary"
-              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </div>
-        </motion.div>
       </section>
 
       {/* USP Section */}
-      <section className="py-24 relative overflow-hidden">
-        <FloatingElements />
+      <section className="py-24 relative overflow-hidden bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              Why Choose <span className="gradient-text">Inventinity</span>?
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-foreground">
+              Why Choose <span className="text-primary">Inventinity</span>?
             </h2>
           </motion.div>
 
@@ -377,54 +325,12 @@ const Landing = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <GlowCard 
-                key={index} 
-                delay={index * 0.1} 
-                glowColor={service.color === "accent" ? "accent" : "primary"}
-                className="h-full"
-              >
-                <div className="p-8">
-                  <div
-                    className={`w-14 h-14 rounded-2xl ${
-                      service.color === "accent" ? "bg-accent/20" : "bg-primary/20"
-                    } flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}
-                  >
-                    <service.icon
-                      className={`w-7 h-7 ${
-                        service.color === "accent" ? "text-accent" : "text-primary"
-                      }`}
-                    />
-                  </div>
-                  
-                  <h3 className="font-display font-semibold text-xl mb-3">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-6">{service.description}</p>
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+             ... (grid would be commented out if you wanted to keep it, but I'll replace it) ...
+            </div> */}
 
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium text-foreground/70 mb-2">
-                      Deliverables:
-                    </p>
-                    {service.deliverables.map((item, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-accent" />
-                        <span className="text-sm text-muted-foreground">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 pt-6 border-t border-border/50">
-                    <Button variant="ghost" className="w-full group" size="sm">
-                      Learn More
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </div>
-              </GlowCard>
-            ))}
+          <div className="flex justify-center mt-12 mb-20">
+            <StackingCards items={services} />
           </div>
         </div>
       </section>
@@ -432,7 +338,7 @@ const Landing = () => {
       {/* AI Integration Highlight */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-spotlight"></div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -441,7 +347,7 @@ const Landing = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
+            <Badge className="mb-4 bg-accent/10 text-foreground border-accent/20">
               ✨ AI-Powered Solutions
             </Badge>
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
@@ -476,7 +382,7 @@ const Landing = () => {
               <GlowCard key={index} delay={index * 0.1} glowColor="accent">
                 <div className="p-8">
                   <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
-                    <item.icon className="w-7 h-7 text-accent" />
+                    <item.icon className="w-7 h-7 text-primary" />
                   </div>
                   <h3 className="font-display font-semibold text-xl mb-3">
                     {item.title}
@@ -508,48 +414,9 @@ const Landing = () => {
           </motion.div>
 
           {/* Filter Bar */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {portfolioFilters.map((filter) => (
-              <Button
-                key={filter}
-                variant={selectedFilter === filter ? "hero" : "outline"}
-                size="sm"
-                onClick={() => setSelectedFilter(filter)}
-              >
-                {filter}
-              </Button>
-            ))}
-          </div>
-
-          {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
-              <GlowCard key={project.title} delay={index * 0.1} className="overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <Sparkles className="w-12 h-12 text-primary/50 group-hover:scale-110 transition-transform" />
-                </div>
-                <div className="p-6">
-                  <div className="flex gap-2 mb-3">
-                    {project.tags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant="outline"
-                        className="text-xs border-primary/20 bg-primary/5"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <h3 className="font-display font-semibold text-lg mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {project.description}
-                  </p>
-                </div>
-              </GlowCard>
-            ))}
+          {/* Portfolio 3D Carousel */}
+          <div className="w-full">
+            <ProjectCarousel projects={portfolioProjects} />
           </div>
         </div>
       </section>
@@ -577,7 +444,7 @@ const Landing = () => {
 
           {/* Team Grid */}
           <div className="mt-20">
-            <motion.h3 
+            <motion.h3
               className="font-display text-3xl font-bold text-center mb-12"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -585,7 +452,7 @@ const Landing = () => {
             >
               Meet the <span className="gradient-text">Team</span>
             </motion.h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamMembers.map((member, index) => (
                 <GlowCard key={member.name} delay={index * 0.1} className="text-center">
@@ -600,17 +467,17 @@ const Landing = () => {
                       </div>
                       {index === 0 && (
                         <div className="absolute -top-1 -right-1 w-6 h-6 bg-accent rounded-full flex items-center justify-center">
-                          <Star className="w-3 h-3 text-accent-foreground" />
+                          <Star className="w-3 h-3 text-foreground" />
                         </div>
                       )}
                     </div>
-                    
+
                     <h4 className="font-display font-semibold text-lg mb-1">
                       {member.name}
                     </h4>
-                    
+
                     <p className="text-sm text-primary mb-3">{member.role}</p>
-                    
+
                     <p className="text-sm text-muted-foreground mb-4">
                       {member.bio}
                     </p>
@@ -671,9 +538,9 @@ const Landing = () => {
                 popular: false,
               },
             ].map((plan, index) => (
-              <GlowCard 
-                key={plan.tier} 
-                delay={index * 0.1} 
+              <GlowCard
+                key={plan.tier}
+                delay={index * 0.1}
                 glowColor={plan.popular ? "accent" : "primary"}
                 className={`h-full ${plan.popular ? "ring-2 ring-accent/50" : ""}`}
               >
@@ -839,7 +706,7 @@ const Landing = () => {
                       +1 (234) 567-890
                     </a>
                   </div>
-                  
+
                   <Button variant="accent" size="lg" className="mt-4">
                     Book a Discovery Call
                   </Button>

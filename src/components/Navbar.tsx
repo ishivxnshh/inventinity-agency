@@ -2,20 +2,25 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { 
-  Menu, 
-  X, 
-  Sparkles, 
-  ChevronDown, 
-  Globe, 
-  Smartphone, 
-  Brain, 
-  Cloud, 
+import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  Menu,
+  X,
+  Sparkles,
+  ChevronDown,
+  Globe,
+  Smartphone,
+  Brain,
+  Cloud,
   Server,
   Video,
   Palette,
   TrendingUp,
-  ChevronRight
+  ChevronRight,
+  Layers,
+  Film,
+  User,
+  Phone
 } from "lucide-react";
 
 interface ServiceItem {
@@ -34,32 +39,32 @@ const serviceCategories: ServiceCategory[] = [
   {
     label: "Tech Services",
     items: [
-      { 
-        name: "Web Development", 
+      {
+        name: "Web Development",
         description: "Custom websites & web applications",
         icon: <Globe className="w-5 h-5" />,
         href: "#services"
       },
-      { 
-        name: "Mobile App Development", 
+      {
+        name: "Mobile App Development",
         description: "iOS & Android native apps",
         icon: <Smartphone className="w-5 h-5" />,
         href: "#services"
       },
-      { 
-        name: "AI Solutions & Integrations", 
+      {
+        name: "AI Solutions & Integrations",
         description: "Smart automation & AI products",
         icon: <Brain className="w-5 h-5" />,
         href: "#services"
       },
-      { 
-        name: "Cloud Services", 
+      {
+        name: "Cloud Services",
         description: "Scalable cloud infrastructure",
         icon: <Cloud className="w-5 h-5" />,
         href: "#services"
       },
-      { 
-        name: "Hosting & Deployment", 
+      {
+        name: "Hosting & Deployment",
         description: "Reliable hosting solutions",
         icon: <Server className="w-5 h-5" />,
         href: "#services"
@@ -69,20 +74,20 @@ const serviceCategories: ServiceCategory[] = [
   {
     label: "Creative & Growth",
     items: [
-      { 
-        name: "Video Editing", 
+      {
+        name: "Video Editing",
         description: "Professional video production",
         icon: <Video className="w-5 h-5" />,
         href: "/videos"
       },
-      { 
-        name: "Graphic Designing", 
+      {
+        name: "Graphic Designing",
         description: "Brand identity & visuals",
         icon: <Palette className="w-5 h-5" />,
         href: "#services"
       },
-      { 
-        name: "Digital Marketing", 
+      {
+        name: "Digital Marketing",
         description: "SEO, ads & growth strategies",
         icon: <TrendingUp className="w-5 h-5" />,
         href: "#services"
@@ -117,17 +122,17 @@ export const Navbar = () => {
   }, [isServicesOpen]);
 
   const navLinks = [
-    { name: "Services", href: "#services", hasDropdown: true },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Videos", href: "/videos", isRoute: true },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: "Services", href: "#services", hasDropdown: true, icon: <Sparkles className="w-4 h-4" /> },
+    { name: "Portfolio", href: "#portfolio", icon: <Layers className="w-4 h-4" /> },
+    { name: "Videos", href: "/videos", isRoute: true, icon: <Film className="w-4 h-4" /> },
+    { name: "About", href: "#about", icon: <User className="w-4 h-4" /> },
+    { name: "Contact", href: "#contact", icon: <Phone className="w-4 h-4" /> },
   ];
 
   const scrollToSection = (href: string) => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
-    
+
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
@@ -143,7 +148,7 @@ export const Navbar = () => {
       }, 100);
       return;
     }
-    
+
     const element = document.querySelector(href);
     if (element) {
       const navbarHeight = 80;
@@ -158,7 +163,7 @@ export const Navbar = () => {
   const handleServiceClick = (href: string) => {
     setIsServicesOpen(false);
     setIsMobileMenuOpen(false);
-    
+
     if (href.startsWith("/")) {
       navigate(href);
       window.scrollTo({ top: 0, behavior: "instant" });
@@ -175,167 +180,132 @@ export const Navbar = () => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4"
-    >
-      <div
-        className={`w-full max-w-6xl rounded-full border transition-all duration-300 ${
-          isScrolled 
-            ? "bg-background/80 backdrop-blur-xl border-border/50 shadow-lg" 
-            : "bg-background/60 backdrop-blur-md border-border/30"
-        }`}
-      >
-        <div className="flex items-center justify-between h-14 px-6">
+    <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      <div className={`transition-all duration-300 ${isScrolled ? "scale-95 translate-y-2" : ""}`}>
+        <div className="bg-background/80 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl rounded-full px-6 py-3 flex items-center gap-8 md:gap-12">
+
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center group-hover:shadow-glow transition-all">
-              <Sparkles className="w-4 h-4 text-white" />
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="relative w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full border border-primary/20 group-hover:bg-primary/20 transition-colors">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-5 h-5 text-primary"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.27 6.96 12 12.01l8.73-5.05" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.08V12" />
+              </svg>
             </div>
-            <span className="font-display text-lg font-bold text-foreground">
-              Inventinity
-            </span>
+            <span className="font-display font-bold text-xl tracking-tight hidden lg:block">Inventinity</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <div key={link.name} className="relative">
-                {link.isRoute ? (
-                  <Link
-                    to={link.href}
-                    onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
-                    className={`px-4 py-2 text-sm font-medium transition-colors rounded-full hover:bg-secondary/50 ${
-                      location.pathname === link.href ? "text-foreground" : "text-foreground/70 hover:text-foreground"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ) : link.hasDropdown ? (
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setIsServicesOpen(!isServicesOpen);
-                    }}
-                    className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-full hover:bg-secondary/50 ${
-                      isServicesOpen ? "text-foreground bg-secondary/50" : "text-foreground/70 hover:text-foreground"
-                    }`}
-                  >
-                    {link.name}
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors rounded-full hover:bg-secondary/50"
-                  >
-                    {link.name}
-                  </button>
-                )}
-              </div>
-            ))}
+          <div className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full p-1 border border-white/5">
+            {navLinks.map((link) => {
+              const isActive = link.isRoute
+                ? location.pathname === link.href
+                : (location.pathname === "/" && location.hash === link.href);
+
+              return (
+                <div key={link.name} className="relative group/nav">
+                  {link.hasDropdown ? (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsServicesOpen(!isServicesOpen);
+                      }}
+                      className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${isServicesOpen ? "bg-background text-primary shadow-[0_0_15px_rgba(var(--primary),0.2)]" : "hover:text-primary hover:bg-background/50 text-muted-foreground"}`}
+                    >
+                      {link.icon}
+                      {link.name}
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isServicesOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => link.isRoute ? navigate(link.href) : scrollToSection(link.href)}
+                      className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 relative ${isActive ? "bg-background text-foreground shadow-[0_0_20px_rgba(var(--primary),0.15)] ring-1 ring-primary/10" : "hover:text-primary hover:bg-background/50 text-muted-foreground"}`}
+                    >
+                      {link.icon}
+                      {link.name}
+                      {/* LED Dot for active state */}
+                      {isActive && (
+                        <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]"></span>
+                      )}
+                    </button>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-2">
-            <Link to="/auth">
-              <Button variant="ghost" size="sm" className="rounded-full text-foreground/70 hover:text-foreground hover:bg-secondary/50">
-                Sign In
-              </Button>
-            </Link>
-            
-            <button onClick={() => scrollToSection("#contact")}>
-              <Button size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/90">
-                Book a Call
+          {/* CTA Buttons - Compact */}
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <button onClick={() => scrollToSection("#contact")} className="hidden md:block">
+              <Button size="sm" className="rounded-full px-5 bg-foreground text-background hover:bg-foreground/90 font-medium h-9">
+                Let's Talk
               </Button>
             </button>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-full hover:bg-secondary/50 transition-colors"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-muted-foreground hover:text-primary"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mega Menu Dropdown - Desktop */}
+      {/* Services Mega Menu - Enterprise Style */}
       <AnimatePresence>
         {isServicesOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="hidden md:block absolute top-20 left-1/2 -translate-x-1/2 w-full max-w-4xl z-50"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.15 }}
+            className="hidden md:block absolute top-full left-0 w-full border-b border-border/10 bg-background shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-background/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl overflow-hidden">
-              <div className="grid grid-cols-2 gap-0">
-                {serviceCategories.map((category, idx) => (
-                  <div 
-                    key={category.label} 
-                    className={`p-6 ${idx === 0 ? 'border-r border-border/30' : ''}`}
-                  >
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className={`w-2 h-2 rounded-full ${idx === 0 ? 'bg-primary' : 'bg-accent'}`} />
-                      <span className={`text-xs font-semibold uppercase tracking-wider ${idx === 0 ? 'text-primary' : 'text-accent'}`}>
-                        {category.label}
-                      </span>
-                    </div>
-                    
-                    <div className="space-y-1">
-                      {category.items.map((service) => (
-                        <button
-                          key={service.name}
-                          onClick={() => handleServiceClick(service.href)}
-                          className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 text-left group ${
-                            isActiveService(service.href)
-                              ? 'bg-primary/10 text-foreground'
-                              : 'hover:bg-secondary/50 text-foreground/80 hover:text-foreground'
-                          }`}
-                        >
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-all duration-200 ${
-                            isActiveService(service.href)
-                              ? 'bg-primary/20 text-primary'
-                              : 'bg-secondary/50 text-foreground/60 group-hover:bg-primary/10 group-hover:text-primary'
-                          }`}>
-                            {service.icon}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium">{service.name}</p>
-                            <p className="text-xs text-muted-foreground truncate">{service.description}</p>
-                          </div>
-                          <ChevronRight className="w-4 h-4 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
-                        </button>
-                      ))}
-                    </div>
+            <div className="max-w-7xl mx-auto grid grid-cols-4 gap-8 p-8">
+              {serviceCategories.map((category) => (
+                <div key={category.label} className="col-span-1 space-y-4">
+                  <h3 className="text-sm font-semibold text-primary uppercase tracking-wider">{category.label}</h3>
+                  <div className="space-y-2">
+                    {category.items.map((service) => (
+                      <button
+                        key={service.name}
+                        onClick={() => handleServiceClick(service.href)}
+                        className="group flex items-start gap-3 w-full p-2 -mx-2 rounded-md hover:bg-secondary/50 transition-colors text-left"
+                      >
+                        <div className="mt-1 text-muted-foreground group-hover:text-primary transition-colors">
+                          {service.icon}
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-foreground group-hover:text-primary">{service.name}</div>
+                          <div className="text-xs text-muted-foreground line-clamp-1">{service.description}</div>
+                        </div>
+                      </button>
+                    ))}
                   </div>
-                ))}
-              </div>
-              
-              {/* Bottom CTA */}
-              <div className="px-6 py-4 bg-secondary/30 border-t border-border/30">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-primary" />
-                    <span className="text-sm text-muted-foreground">Need a custom solution?</span>
-                  </div>
-                  <button 
-                    onClick={() => scrollToSection("#contact")}
-                    className="text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
-                  >
-                    Let's talk
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
                 </div>
+              ))}
+              <div className="col-span-2 bg-secondary/30 rounded-lg p-6 flex flex-col justify-center">
+                <h4 className="text-lg font-bold text-primary mb-2">Enterprise Solutions</h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Discover how our full-stack agency can transform your digital presence with enterprise-grade security and scalability.
+                </p>
+                <button
+                  onClick={() => scrollToSection("#contact")}
+                  className="text-sm font-semibold text-primary flex items-center gap-2 hover:underline"
+                >
+                  Get a Custom Quote <ChevronRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
           </motion.div>
@@ -346,114 +316,50 @@ export const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-20 left-4 right-4 md:hidden bg-background/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-xl overflow-hidden z-50"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden border-t border-border/10 bg-background overflow-hidden"
           >
-            <div className="p-4 space-y-1 max-h-[70vh] overflow-y-auto">
+            <div className="px-6 py-4 space-y-4">
               {navLinks.map((link) => (
-                link.isRoute ? (
-                  <Link
-                    key={link.name}
-                    to={link.href}
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      window.scrollTo({ top: 0, behavior: "instant" });
-                    }}
-                    className={`block w-full px-4 py-3 rounded-xl transition-colors ${
-                      location.pathname === link.href 
-                        ? "bg-primary/10 text-foreground" 
-                        : "text-foreground/70 hover:text-foreground hover:bg-secondary/50"
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ) : link.hasDropdown ? (
-                  <div key={link.name}>
-                    <button
-                      onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                      className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-colors ${
-                        isMobileServicesOpen 
-                          ? "bg-secondary/50 text-foreground" 
-                          : "text-foreground/70 hover:text-foreground hover:bg-secondary/50"
-                      }`}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    
-                    <AnimatePresence>
-                      {isMobileServicesOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pt-2 pb-1 space-y-4">
-                            {serviceCategories.map((category, idx) => (
-                              <div key={category.label}>
-                                <div className="flex items-center gap-2 px-4 mb-2">
-                                  <div className={`w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-primary' : 'bg-accent'}`} />
-                                  <span className={`text-xs font-semibold uppercase tracking-wider ${idx === 0 ? 'text-primary' : 'text-accent'}`}>
-                                    {category.label}
-                                  </span>
-                                </div>
-                                
-                                <div className="space-y-1">
-                                  {category.items.map((service) => (
-                                    <button
-                                      key={service.name}
-                                      onClick={() => handleServiceClick(service.href)}
-                                      className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-left ${
-                                        isActiveService(service.href)
-                                          ? 'bg-primary/10 text-foreground'
-                                          : 'text-foreground/70 hover:text-foreground hover:bg-secondary/30'
-                                      }`}
-                                    >
-                                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
-                                        isActiveService(service.href)
-                                          ? 'bg-primary/20 text-primary'
-                                          : 'bg-secondary/50 text-foreground/60'
-                                      }`}>
-                                        {service.icon}
-                                      </div>
-                                      <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-medium">{service.name}</p>
-                                        <p className="text-xs text-muted-foreground truncate">{service.description}</p>
-                                      </div>
-                                    </button>
-                                  ))}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                link.hasDropdown ? (
+                  <div key={link.name} className="space-y-2">
+                    <div className="text-sm font-medium text-foreground py-2">{link.name}</div>
+                    <div className="pl-4 space-y-2 border-l-2 border-border/30">
+                      {serviceCategories.map(cat => (
+                        cat.items.map(item => (
+                          <button
+                            key={item.name}
+                            onClick={() => handleServiceClick(item.href)}
+                            className="block w-full text-left text-sm text-muted-foreground hover:text-primary py-1"
+                          >
+                            {item.name}
+                          </button>
+                        ))
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <button
                     key={link.name}
-                    onClick={() => scrollToSection(link.href)}
-                    className="block w-full text-left px-4 py-3 rounded-xl text-foreground/70 hover:text-foreground hover:bg-secondary/50 transition-colors"
+                    onClick={() => link.isRoute ? navigate(link.href) : scrollToSection(link.href)}
+                    className="block w-full text-left text-sm font-medium text-foreground py-2 hover:text-primary"
                   >
                     {link.name}
                   </button>
                 )
               ))}
-              
-              <div className="pt-4 space-y-2 border-t border-border/50 mt-2">
-                <Link to="/auth" className="block">
-                  <Button variant="outline" className="w-full rounded-full">
-                    Sign In
-                  </Button>
+              <div className="pt-4 border-t border-border/10 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-muted-foreground">Theme</span>
+                  <ThemeToggle />
+                </div>
+                <Link to="/auth" className="block text-center text-sm font-medium text-muted-foreground hover:text-primary">
+                  Log in
                 </Link>
-                
-                <button onClick={() => scrollToSection("#contact")} className="block w-full">
-                  <Button className="w-full rounded-full bg-foreground text-background hover:bg-foreground/90">
+                <button onClick={() => scrollToSection("#contact")} className="w-full">
+                  <Button className="w-full bg-primary text-primary-foreground rounded-md">
                     Book a Call
                   </Button>
                 </button>
@@ -462,6 +368,6 @@ export const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };

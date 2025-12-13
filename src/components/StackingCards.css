@@ -1,0 +1,157 @@
+.stack-container {
+  display: flex;
+  height: 450px;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+  perspective: 1000px;
+  /* Ensure we don't clip shadows */
+  overflow: visible;
+}
+
+.stack-card {
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+  width: 280px;
+  /* Wider card */
+  background-color: hsl(var(--card));
+  border-radius: 16px;
+  /* Subtle default shadow */
+  box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  /* Reduce negative margin to show more of the card by default to avoid overlap text */
+  margin-right: -120px;
+  border: 1px solid hsl(var(--border));
+  overflow: hidden;
+  /* Default state: slightly dimmed? No, let's keep it clean. */
+  background: hsl(var(--card));
+}
+
+.dark .stack-card {
+  box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.4);
+}
+
+.stack-card:last-child {
+  margin-right: 0;
+}
+
+.stack-card:hover {
+  transform: translateY(-25px) rotate(0deg);
+  /* Lift straight up */
+  z-index: 30;
+  /* Much higher z-index to stay on top */
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+  /* Separate from neighbors */
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+/* Push subsequent cards away when one is hovered */
+.stack-card:hover~.stack-card {
+  transform: translateX(100px);
+  /* Move them further right */
+}
+
+.stack-title {
+  color: hsl(var(--card-foreground));
+  font-weight: 700;
+  position: absolute;
+  left: 24px;
+  top: 28px;
+  /* Constrain width to the visible "spine" of the card when stacked (approx 160px) */
+  width: 140px;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  z-index: 5;
+  transition: width 0.3s;
+}
+
+/* Allow title to expand when hovered */
+.stack-card:hover .stack-title {
+  width: 230px;
+  /* Full width minus padding */
+}
+
+.stack-bar {
+  position: absolute;
+  top: 110px;
+  /* Adjusted position */
+  left: 24px;
+  height: 4px;
+  width: 60px;
+  /* Small dash by default */
+  background-color: hsl(var(--muted));
+  border-radius: 2px;
+  overflow: hidden;
+  transition: width 0.3s;
+}
+
+.stack-filledbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: hsl(var(--primary));
+  transition: width 0.4s ease-out;
+}
+
+.stack-card:hover .stack-bar {
+  width: 230px;
+  /* Expand bar */
+}
+
+.stack-card:hover .stack-filledbar {
+  width: 100%;
+}
+
+/* Content - visible but subtle by default, fully visible on hover */
+.stack-content {
+  position: absolute;
+  top: 140px;
+  left: 24px;
+  right: 24px;
+  /* Show content by default */
+  opacity: 0.6;
+  filter: blur(0.5px);
+  transform: translateY(0);
+  transition: all 0.4s ease-out;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9rem;
+  line-height: 1.5;
+
+  /* Truncate by default if needed, or just let it flow */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.stack-card:hover .stack-content {
+  opacity: 1;
+  filter: blur(0);
+  -webkit-line-clamp: 8;
+  line-clamp: 8;
+  /* Show more */
+}
+
+/* Circle/Icon Area */
+.stack-circle-container {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+.stack-card:hover .stack-circle-container {
+  transform: scale(1.1);
+}
