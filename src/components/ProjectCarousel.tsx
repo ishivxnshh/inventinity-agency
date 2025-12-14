@@ -66,8 +66,8 @@ export const ProjectCarousel = ({ projects: rawProjects }: ProjectCarouselProps)
                 {/* Header Centered */}
                 <div className="text-center mb-12 relative px-6">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">Selected Cases</h3>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-                        <span className="gradient-text">Our Work</span>
+                    <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-foreground">
+                        Our Work
                     </h2>
 
                     {/* Navigation Controls - Absolute Right on Desktop, Hidden/Below on Mobile? 
@@ -103,10 +103,10 @@ export const ProjectCarousel = ({ projects: rawProjects }: ProjectCarouselProps)
                 <div className="overflow-visible px-4 md:px-0">
                     <motion.div
                         className="flex gap-8 cursor-grab active:cursor-grabbing w-fit touch-pan-x"
-                        animate={{ x: -activeIndex * 340 + (typeof window !== 'undefined' && window.innerWidth > 768 ? 100 : 20) }}
+                        animate={{ x: -activeIndex * (typeof window !== 'undefined' && window.innerWidth > 768 ? 632 : 332) + (typeof window !== 'undefined' && window.innerWidth > 768 ? 100 : 20) }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         drag="x"
-                        dragConstraints={{ left: -((items.length - 1) * 340), right: 0 }}
+                        dragConstraints={{ left: -((items.length - 1) * (typeof window !== 'undefined' && window.innerWidth > 768 ? 632 : 332)), right: 0 }}
                         onDragEnd={handleDragEnd}
                     >
                         {items.map((project, index) => {
@@ -114,7 +114,7 @@ export const ProjectCarousel = ({ projects: rawProjects }: ProjectCarouselProps)
                             return (
                                 <motion.div
                                     key={index}
-                                    className={`relative flex-shrink-0 w-[300px] md:w-[400px] h-[450px] rounded-2xl overflow-hidden transition-all duration-500
+                                    className={`relative flex-shrink-0 w-[300px] md:w-[600px] h-[200px] md:h-[360px] rounded-2xl overflow-hidden transition-all duration-500
                                     ${isActive ? 'opacity-100 scale-100' : 'opacity-80 scale-95 hover:opacity-100'}
                                 `}
                                     onClick={() => {
@@ -139,7 +139,7 @@ export const ProjectCarousel = ({ projects: rawProjects }: ProjectCarouselProps)
 
                                         {/* Active/Hover State Content */}
                                         <motion.div
-                                            className="absolute bottom-0 left-0 right-0 p-6 text-white text-left"
+                                            className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white text-left"
                                             initial={{ opacity: 0.9, y: 0 }}
                                             animate={{ opacity: isActive ? 1 : 0.9 }}
                                         >

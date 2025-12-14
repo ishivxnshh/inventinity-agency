@@ -250,11 +250,11 @@ export const Navbar = () => {
           {/* CTA Buttons - Compact */}
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <button onClick={() => scrollToSection("#contact")} className="hidden md:block">
+            <div onClick={() => scrollToSection("#contact")} className="hidden md:block cursor-pointer">
               <Button size="sm" className="rounded-full px-5 bg-foreground text-background hover:bg-foreground/90 font-medium h-9">
                 Let's Talk
               </Button>
-            </button>
+            </div>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -364,11 +364,11 @@ export const Navbar = () => {
                 <Link to="/auth" className="block text-center text-sm font-medium text-muted-foreground hover:text-primary">
                   Log in
                 </Link>
-                <button onClick={() => scrollToSection("#contact")} className="w-full">
+                <div onClick={() => scrollToSection("#contact")} className="w-full cursor-pointer">
                   <Button className="w-full bg-primary text-primary-foreground rounded-md">
                     Book a Call
                   </Button>
-                </button>
+                </div>
               </div>
             </div>
           </motion.div>

@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +14,13 @@ import { GlowCard } from "@/components/GlowCard";
 import { StackingCards } from "@/components/StackingCards";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { AntigravityHero } from "@/components/AntigravityHero";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { FloatingActionButton } from "@/components/FloatingActionButton";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { MagneticButton } from "@/components/MagneticButton";
+import { ParallaxSection } from "@/components/ParallaxSection";
+import { ProcessSection } from "@/components/ProcessSection";
+
 import {
   Code2,
   Smartphone,
@@ -32,6 +40,7 @@ import {
 import { useState } from "react";
 
 const Landing = () => {
+  const [isFabOpen, setIsFabOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [formData, setFormData] = useState({
     name: "",
@@ -126,7 +135,7 @@ const Landing = () => {
       name: "Shivansh Mittal",
       role: "Founder & Lead Engineer",
       bio: "Full-stack developer passionate about AI and modern web tech",
-      linkedin: "https://linkedin.com/in/shivansh-mittal",
+      linkedin: "https://linkedin.com/in/ishivxnshh",
     },
     {
       name: "Sarah Chen",
@@ -170,7 +179,21 @@ const Landing = () => {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Handle form submission
+
+    // Simulate API call
+    setTimeout(() => {
+      toast.success("Message sent successfully!", {
+        description: "We'll get back to you within 24 hours.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        budget: "",
+        projectType: "",
+        message: "",
+      });
+    }, 1000);
   };
 
   const scrollToSection = (id: string) => {
@@ -182,6 +205,8 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-background relative selection:bg-primary/20">
+      <ScrollProgress />
+      <FloatingActionButton onOpenChange={setIsFabOpen} />
       <div className="bg-noise"></div>
       <Navbar />
 
@@ -199,21 +224,33 @@ const Landing = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <Badge className="mb-6 bg-secondary text-primary border-primary/20 hover:bg-secondary/80">
+              <Badge variant="section" className="mb-6">
                 <Zap className="w-3 h-3 mr-1" />
                 Full-Stack Digital Agency
               </Badge>
             </motion.div>
 
-            <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-foreground">
-              We Build Scalable
-              <br />
-              <span className="text-primary relative inline-block">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-foreground">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="block"
+              >
+                We Build Scalable
+              </motion.span>
+
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="text-primary relative inline-block"
+              >
                 Digital Products
                 <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                   <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
                 </svg>
-              </span>
+              </motion.span>
             </h1>
 
             <motion.p
@@ -227,29 +264,30 @@ const Landing = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Button
+              <MagneticButton
                 size="lg"
+                variant="hero"
                 onClick={() => scrollToSection("contact")}
-                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base shadow-lg shadow-primary/20"
+                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base shadow-lg shadow-primary/20 glow-primary cursor-pointer"
               >
                 <span className="relative z-10 flex items-center">
                   Book a Strategy Call
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </span>
-              </Button>
-              <Button
+              </MagneticButton>
+              <MagneticButton
                 variant="outline"
                 size="lg"
                 onClick={() => scrollToSection("portfolio")}
-                className="h-12 px-8 text-base border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300"
+                className="h-12 px-8 text-base border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300 cursor-pointer"
               >
                 View Selected Work
-              </Button>
+              </MagneticButton>
             </motion.div>
 
             {/* Stats Section */}
@@ -285,20 +323,28 @@ const Landing = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyChooseUs.map((item, index) => (
-              <GlowCard key={index} delay={index * 0.1} glowColor={index === 1 ? "accent" : "primary"}>
-                <div className="p-6">
-                  <div className={`w-12 h-12 rounded-xl ${index === 1 ? "bg-accent/20" : "bg-primary/20"} flex items-center justify-center mb-4`}>
-                    {index === 0 && <Users className="w-6 h-6 text-primary" />}
-                    {index === 1 && <Sparkles className="w-6 h-6 text-accent" />}
-                    {index === 2 && <Trophy className="w-6 h-6 text-primary" />}
-                    {index === 3 && <Clock className="w-6 h-6 text-primary" />}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <GlowCard delay={index * 0.1} glowColor={index === 1 ? "accent" : "primary"} className="hover-lift cursor-pointer">
+                  <div className="p-6">
+                    <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center mb-4">
+                      {index === 0 && <Users className="w-6 h-6 text-primary" />}
+                      {index === 1 && <Sparkles className="w-6 h-6 text-primary" />}
+                      {index === 2 && <Trophy className="w-6 h-6 text-primary" />}
+                      {index === 3 && <Clock className="w-6 h-6 text-primary" />}
+                    </div>
+                    <h3 className="font-display font-semibold text-lg mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm">{item.description}</p>
                   </div>
-                  <h3 className="font-display font-semibold text-lg mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
-                </div>
-              </GlowCard>
+                </GlowCard>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -306,33 +352,35 @@ const Landing = () => {
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-gradient-mesh relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-16"
-          >
-            <Badge className="mb-4 bg-secondary border-primary/20">
-              What We Do
-            </Badge>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              <span className="gradient-text">Our Services</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Comprehensive digital solutions tailored to your needs
-            </p>
-          </motion.div>
+        <ParallaxSection offset={30}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center mb-16"
+            >
+              <Badge variant="section" className="mb-4">
+                What We Do
+              </Badge>
+              <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
+                Our Services
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Comprehensive digital solutions tailored to your needs
+              </p>
+            </motion.div>
 
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
              ... (grid would be commented out if you wanted to keep it, but I'll replace it) ...
             </div> */}
 
-          <div className="flex justify-center mt-12 mb-20">
-            <StackingCards items={services} />
+            <div className="flex justify-center mt-12 mb-20">
+              <StackingCards items={services} />
+            </div>
           </div>
-        </div>
+        </ParallaxSection>
       </section>
 
       {/* AI Integration Highlight */}
@@ -347,11 +395,11 @@ const Landing = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
-            <Badge className="mb-4 bg-accent/10 text-foreground border-accent/20">
+            <Badge variant="section" className="mb-4">
               ✨ AI-Powered Solutions
             </Badge>
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              <span className="gradient-text">AI Integration & Development</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              AI Integration & Development
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               We build AI solutions that actually solve problems and drive business value
@@ -379,21 +427,32 @@ const Landing = () => {
                 icon: TrendingUp,
               },
             ].map((item, index) => (
-              <GlowCard key={index} delay={index * 0.1} glowColor="accent">
-                <div className="p-8">
-                  <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
-                    <item.icon className="w-7 h-7 text-primary" />
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15 }}
+              >
+                <GlowCard delay={index * 0.1} glowColor="accent" className="hover-lift spotlight cursor-pointer">
+                  <div className="p-8">
+                    <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
+                      <item.icon className="w-7 h-7 text-primary" />
+                    </div>
+                    <h3 className="font-display font-semibold text-xl mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-muted-foreground">{item.description}</p>
                   </div>
-                  <h3 className="font-display font-semibold text-xl mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground">{item.description}</p>
-                </div>
-              </GlowCard>
+                </GlowCard>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Process Section */}
+      <ProcessSection />
 
       {/* Portfolio Section */}
       <section id="portfolio" className="py-24 bg-gradient-mesh">
@@ -418,8 +477,8 @@ const Landing = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">About Inventinity</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground">
+              About Inventinity
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               We're a full-stack digital agency that believes in end-to-end execution.
@@ -437,7 +496,7 @@ const Landing = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              Meet the <span className="gradient-text">Team</span>
+              Meet the <span className="text-primary">Team</span>
             </motion.h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -445,9 +504,9 @@ const Landing = () => {
                 <GlowCard key={member.name} delay={index * 0.1} className="text-center">
                   <div className="p-6">
                     <div className="relative w-24 h-24 mx-auto mb-4">
-                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-accent p-0.5">
+                      <div className="w-24 h-24 rounded-full bg-primary/20 border-2 border-primary/40">
                         <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                          <span className="text-3xl font-bold gradient-text">
+                          <span className="text-3xl font-bold text-primary">
                             {member.name.charAt(0)}
                           </span>
                         </div>
@@ -486,6 +545,9 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+
       {/* Pricing Section */}
       <section className="py-24 bg-gradient-mesh">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -496,8 +558,11 @@ const Landing = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-16"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              <span className="gradient-text">Transparent Pricing</span>
+            <Badge variant="section" className="mb-4">
+              Transparent Pricing
+            </Badge>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              Flexible Plans for Every Need
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Value over vanity. We care about ROI, not just aesthetics.
@@ -525,37 +590,44 @@ const Landing = () => {
                 popular: false,
               },
             ].map((plan, index) => (
-              <GlowCard
+              <motion.div
                 key={plan.tier}
-                delay={index * 0.1}
-                glowColor={plan.popular ? "accent" : "primary"}
-                className={`h-full ${plan.popular ? "ring-2 ring-accent/50" : ""}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
               >
-                <div className="p-8 relative">
-                  {plan.popular && (
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground">
-                      Most Popular
-                    </Badge>
-                  )}
-                  <h3 className="font-display text-2xl font-bold mb-2">{plan.tier}</h3>
-                  <p className="text-muted-foreground mb-6">{plan.description}</p>
-                  <div className="space-y-3 mb-8">
-                    {plan.features.map((feature, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
+                <GlowCard
+                  delay={index * 0.1}
+                  glowColor={plan.popular ? "accent" : "primary"}
+                  className={`h-full hover-lift spotlight ${plan.popular ? "ring-2 ring-accent/50" : ""}`}
+                >
+                  <div className="p-8 pt-12 relative">
+                    {plan.popular && (
+                      <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground">
+                        Most Popular
+                      </Badge>
+                    )}
+                    <h3 className="font-display text-2xl font-bold mb-2">{plan.tier}</h3>
+                    <p className="text-muted-foreground mb-6">{plan.description}</p>
+                    <div className="space-y-3 mb-8">
+                      {plan.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                          <span className="text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Button
+                      variant={plan.popular ? "hero" : "outline"}
+                      className="w-full"
+                      onClick={() => scrollToSection("contact")}
+                    >
+                      Get Quote
+                    </Button>
                   </div>
-                  <Button
-                    variant={plan.popular ? "hero" : "outline"}
-                    className="w-full"
-                    onClick={() => scrollToSection("contact")}
-                  >
-                    Get Quote
-                  </Button>
-                </div>
-              </GlowCard>
+                </GlowCard>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -571,8 +643,8 @@ const Landing = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="text-center mb-12"
           >
-            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-              <span className="gradient-text">Let's Build Something Amazing</span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
+              Let's Build Something Amazing
             </h2>
             <p className="text-xl text-muted-foreground">
               Ready to start your project? Get in touch with us.
@@ -669,10 +741,17 @@ const Landing = () => {
                   />
                 </div>
 
-                <Button type="submit" variant="hero" size="lg" className="w-full">
-                  Send Message
-                  <ArrowRight className="ml-2" />
-                </Button>
+                <MagneticButton
+                  type="submit"
+                  variant="hero"
+                  size="lg"
+                  className="w-full cursor-pointer"
+                >
+                  <span className="flex items-center justify-center">
+                    Send Message
+                    <ArrowRight className="ml-2" />
+                  </span>
+                </MagneticButton>
               </form>
 
               <div className="mt-8 pt-8 border-t border-border">
@@ -680,17 +759,17 @@ const Landing = () => {
                   <p className="text-muted-foreground">Or reach us directly</p>
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                      href="mailto:hello@inventinity.com"
+                      href="mailto:shivanshmittalsde@gmail.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      hello@inventinity.com
+                      shivanshmittalsde@gmail.com
                     </a>
                     <span className="hidden sm:inline text-muted-foreground">•</span>
                     <a
-                      href="tel:+1234567890"
+                      href="tel:+917452862988"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      +1 (234) 567-890
+                      +91 74528 62988
                     </a>
                   </div>
 
@@ -703,6 +782,7 @@ const Landing = () => {
           </Card>
         </div>
       </section>
+
 
       <Footer />
     </div>

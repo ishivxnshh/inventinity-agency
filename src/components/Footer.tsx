@@ -21,7 +21,7 @@ export const Footer = () => {
   return (
     <footer className="relative bg-gradient-mesh border-t border-border">
       <div className="absolute inset-0 bg-gradient-spotlight opacity-30"></div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -39,7 +39,7 @@ export const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/ishivxnshh"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
@@ -47,7 +47,7 @@ export const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/ishivxnshh"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
@@ -55,7 +55,7 @@ export const Footer = () => {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="mailto:hello@inventinity.com"
+                href="mailto:shivanshmittalsde@gmail.com"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
               >
                 <Mail className="w-5 h-5" />
@@ -102,16 +102,16 @@ export const Footer = () => {
                 Ready to start your project?
               </p>
               <a
-                href="mailto:hello@inventinity.com"
+                href="mailto:shivanshmittalsde@gmail.com"
                 className="text-sm text-foreground hover:text-primary transition-colors block"
               >
-                hello@inventinity.com
+                shivanshmittalsde@gmail.com
               </a>
               <a
-                href="tel:+1234567890"
+                href="tel:+917452862988"
                 className="text-sm text-foreground hover:text-primary transition-colors block"
               >
-                +1 (234) 567-890
+                +91 74528 62988
               </a>
             </div>
           </div>
