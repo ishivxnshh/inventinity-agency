@@ -1,28 +1,24 @@
-import { Suspense, lazy } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GlowCard } from "@/components/GlowCard";
 import { StackingCards } from "@/components/StackingCards";
 import { ProjectCarousel } from "@/components/ProjectCarousel";
-import { AntigravityHero } from "@/components/AntigravityHero";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { FloatingActionButton } from "@/components/FloatingActionButton";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { MagneticButton } from "@/components/MagneticButton";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { ProcessSection } from "@/components/ProcessSection";
+import { Scene } from "@/components/ui/Scene";
+import { TextReveal } from "@/components/ui/TextReveal";
+import { CustomCursor } from "@/components/ui/Cursor";
 
 import {
-  Code2,
+  CodeXml,
   Smartphone,
   Sparkles,
   Video,
@@ -37,11 +33,16 @@ import {
   Users,
   Trophy,
 } from "lucide-react";
-import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 const Landing = () => {
   const [isFabOpen, setIsFabOpen] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState("All");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,18 +54,18 @@ const Landing = () => {
 
   const services = [
     {
-      icon: Code2,
+      icon: CodeXml,
       title: "Website Development",
       description: "Stunning, responsive websites built with modern frameworks and best practices.",
       deliverables: ["Custom design", "SEO optimization", "CMS integration"],
-      color: "primary",
+      color: "accent",
     },
     {
       icon: Smartphone,
       title: "Mobile App Development",
       description: "Native and cross-platform mobile apps that users love.",
       deliverables: ["iOS & Android", "Cloud integration", "Push notifications"],
-      color: "primary",
+      color: "accent",
     },
     {
       icon: Sparkles,
@@ -78,25 +79,23 @@ const Landing = () => {
       title: "Video Editing",
       description: "Professional video editing and post-production services.",
       deliverables: ["Motion graphics", "Color grading", "Sound design"],
-      color: "primary",
+      color: "accent",
     },
     {
       icon: Palette,
       title: "Graphic Design & Branding",
       description: "Memorable brand identities and stunning visual designs.",
       deliverables: ["Logo design", "Brand kits", "Marketing materials"],
-      color: "primary",
+      color: "accent",
     },
     {
       icon: TrendingUp,
       title: "Digital Marketing",
       description: "Data-driven marketing strategies that drive real growth.",
       deliverables: ["SEO & SEM", "Social media", "Performance ads"],
-      color: "primary",
+      color: "accent",
     },
   ];
-
-  // const portfolioFilters = ["All", "Web", "Apps", "AI", "Design", "Marketing"];
 
   const portfolioProjects = [
     {
@@ -124,11 +123,6 @@ const Landing = () => {
       image: "/work3.png",
     },
   ];
-
-  // const filteredProjects =
-  //   selectedFilter === "All"
-  //     ? portfolioProjects
-  //     : portfolioProjects.filter((project) => project.tags.includes(selectedFilter));
 
   const teamMembers = [
     {
@@ -204,103 +198,84 @@ const Landing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative selection:bg-primary/20">
+    <div className="min-h-screen bg-background relative selection:bg-primary/20 cursor-none">
+      <CustomCursor />
       <ScrollProgress />
       <FloatingActionButton onOpenChange={setIsFabOpen} />
       <div className="bg-noise"></div>
       <Navbar />
 
-      {/* Hero Section */}
+      {/* --- HERO SECTION WITH 3D SCENE --- */}
       <section className="relative min-h-[90vh] flex items-center justify-center pt-16 bg-background overflow-hidden">
-        <AntigravityHero />
+        {/* The 3D Background */}
+        <Scene />
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              <Badge variant="section" className="mb-6">
-                <Zap className="w-3 h-3 mr-1" />
-                Full-Stack Digital Agency
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
+              <Badge variant="outline" className="mb-8 px-4 py-2 border-white/10 bg-white/5 backdrop-blur-md">
+                <Zap className="w-3 h-3 mr-2 text-primary" /> Full-Stack Digital Agency
               </Badge>
             </motion.div>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-foreground">
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="block"
-              >
-                We Build Scalable
-              </motion.span>
-
-              <motion.span
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-primary relative inline-block"
-              >
+              <span className="block">We Build Scalable</span>
+              <span className="text-primary relative inline-block">
                 Digital Products
                 <svg className="absolute w-full h-3 -bottom-1 left-0 text-primary/20 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none"></path>
                 </svg>
-              </motion.span>
+              </span>
             </h1>
 
-            <motion.p
-              className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}
+              className="flex flex-col gap-4 mb-12"
             >
-              From mvp to enterprise scale, we handle design, development, and AI integration.
-              <span className="text-foreground font-medium block mt-2"> Your full-stack partner for digital growth.</span>
-            </motion.p>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+                From mvp to enterprise scale, we handle design, development, and AI integration.
+              </p>
+              <p className="text-xl md:text-2xl font-medium text-foreground">
+                Your full-stack partner for digital growth.
+              </p>
+            </motion.div>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12"
             >
               <MagneticButton
                 size="lg"
                 variant="hero"
                 onClick={() => scrollToSection("contact")}
-                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base shadow-lg shadow-primary/20 glow-primary cursor-pointer"
+                className="group relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base shadow-lg shadow-primary/20 glow-primary font-semibold transition-all hover:scale-105 rounded-md"
               >
                 <span className="relative z-10 flex items-center">
                   Book a Strategy Call
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </MagneticButton>
+
               <MagneticButton
                 variant="outline"
                 size="lg"
                 onClick={() => scrollToSection("portfolio")}
-                className="h-12 px-8 text-base border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300 cursor-pointer"
+                className="border-2 bg-transparent text-foreground hover:border-primary rounded-md h-12 px-8 text-base border-primary/20 hover:bg-primary/5 hover:text-primary transition-all duration-300 font-medium"
               >
                 View Selected Work
               </MagneticButton>
             </motion.div>
 
-            {/* Stats Section */}
+            {/* Stats */}
             <motion.div
-              className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto border-t border-border/50 pt-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
+              className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto border-t border-white/10 pt-12"
             >
-              <AnimatedCounter end={50} suffix="+" label="Projects Delivered" />
-              <AnimatedCounter end={98} suffix="%" label="Client Satisfaction" />
-              <AnimatedCounter end={24} suffix="h" label="Avg Response Time" />
-              <AnimatedCounter end={15} suffix="+" label="Team Experts" />
+              <AnimatedCounter end={50} suffix="+" label="Projects" />
+              <AnimatedCounter end={98} suffix="%" label="Satisfaction" />
+              <AnimatedCounter end={24} suffix="h" label="Support" />
+              <AnimatedCounter end={15} suffix="+" label="Experts" />
             </motion.div>
           </motion.div>
         </div>
@@ -372,10 +347,6 @@ const Landing = () => {
               </p>
             </motion.div>
 
-            {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-             ... (grid would be commented out if you wanted to keep it, but I'll replace it) ...
-            </div> */}
-
             <div className="flex justify-center mt-12 mb-20">
               <StackingCards items={services} />
             </div>
@@ -418,7 +389,7 @@ const Landing = () => {
                 title: "AI-Powered Automation",
                 description:
                   "Custom workflows and automations that save time and reduce manual errors.",
-                icon: Code2,
+                icon: CodeXml,
               },
               {
                 title: "AI-Enhanced Dashboards",
@@ -457,10 +428,6 @@ const Landing = () => {
       {/* Portfolio Section */}
       <section id="portfolio" className="py-24 bg-gradient-mesh">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
-          {/* Filter Bar */}
-          {/* Portfolio 3D Carousel */}
           <div className="w-full">
             <ProjectCarousel projects={portfolioProjects} />
           </div>
@@ -468,7 +435,7 @@ const Landing = () => {
       </section>
 
       {/* About & Team Section */}
-      <section id="about" className="py-24">
+      <section id="about" className="py-24 bg-gradient-mesh relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -634,8 +601,8 @@ const Landing = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-32 relative bg-gradient-mesh overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -651,8 +618,8 @@ const Landing = () => {
             </p>
           </motion.div>
 
-          <Card className="glass-strong">
-            <CardContent className="p-8">
+          <Card className="glass-strong p-8 rounded-2xl border border-white/10">
+            <CardContent className="p-0">
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -782,7 +749,6 @@ const Landing = () => {
           </Card>
         </div>
       </section>
-
 
       <Footer />
     </div>

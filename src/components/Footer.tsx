@@ -30,7 +30,7 @@ export const Footer = () => {
               <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:shadow-glow transition-all">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
-              <span className="font-display text-xl font-bold gradient-text">
+              <span className="font-display text-xl font-bold text-foreground">
                 Inventinity
               </span>
             </Link>

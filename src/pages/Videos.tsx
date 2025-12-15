@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { CustomCursor } from "@/components/CustomCursor";
+import { CustomCursor } from "@/components/ui/Cursor";
 import { Button } from "@/components/ui/button";
-import { Play, ExternalLink } from "lucide-react";
+import { Play, ExternalLink, Film } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 interface VideoProject {
   id: string;
@@ -86,61 +88,65 @@ export default function Videos() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, []);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, []);
 
-  const filteredProjects = selectedCategory === "All" 
-    ? videoProjects 
-    : videoProjects.filter(p => p.category === selectedCategory);
+  const filteredProjects = selectedCategory === "All" ? videoProjects : videoProjects.filter(p => p.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <CustomCursor />
+      <div className="bg-noise"></div>
       <Navbar />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              Video <span className="gradient-text">Portfolio</span>
-            </h1>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Transforming ideas into stunning visual stories. From brand videos to social media content,
-              we craft videos that captivate and convert.
-            </p>
-          </motion.div>
+
+      {/* --- CINEMATIC HERO --- */}
+      <section className="pt-40 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background glow for atmosphere */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="flex justify-center mb-6">
+            <Badge variant="outline" className="px-4 py-2 border-white/10 bg-white/5 backdrop-blur-md">
+              <Film className="w-3 h-3 mr-2" /> Production House
+            </Badge>
+          </div>
+
+          <h1 className="font-display text-6xl sm:text-7xl lg:text-9xl font-bold mb-8 tracking-tight">
+            <div className="flex flex-col items-center gap-2">
+              <TextReveal className="text-foreground">Cinematic</TextReveal>
+              <TextReveal className="text-muted-foreground">Reality</TextReveal>
+            </div>
+          </h1>
+
+          <p className="text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+            Transforming ideas into stunning visual stories. From brand videos to social media content, we craft videos that captivate.
+          </p>
         </div>
       </section>
 
-      {/* Filter Tabs */}
-      <section className="pb-12 px-4 sm:px-6 lg:px-8">
+      {/* --- FILTER TABS --- */}
+      <section className="pb-12 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-3 justify-center">
             {categories.map((category) => (
-              <Button
+              <button
                 key={category}
-                variant={selectedCategory === category ? "hero" : "outline"}
-                size="sm"
                 onClick={() => setSelectedCategory(category)}
-                className="transition-all duration-300"
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border border-transparent ${selectedCategory === category
+                  ? "bg-foreground text-background scale-105"
+                  : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:border-white/10"
+                  }`}
               >
                 {category}
-              </Button>
+              </button>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Video Grid */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
+      {/* --- VIDEO GRID --- */}
+      <section className="pb-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
@@ -157,8 +163,8 @@ export default function Videos() {
                   onClick={() => setSelectedVideo(project)}
                 >
                   <div className="relative aspect-video overflow-hidden rounded-t-xl">
-                    <img 
-                      src={project.thumbnail} 
+                    <img
+                      src={project.thumbnail}
                       alt={project.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
@@ -171,7 +177,7 @@ export default function Videos() {
                       {project.duration}
                     </div>
                   </div>
-                  
+
                   <div className="p-6">
                     <div className="text-xs font-medium text-primary mb-2">
                       {project.category}
@@ -193,69 +199,68 @@ export default function Videos() {
               ))}
             </AnimatePresence>
           </motion.div>
+
+          <AnimatePresence>
+            {selectedVideo && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                onClick={() => setSelectedVideo(null)}
+              >
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  className="glass-strong max-w-4xl w-full rounded-2xl overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="aspect-video bg-black">
+                    <img
+                      src={selectedVideo.thumbnail}
+                      alt={selectedVideo.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <div className="text-sm font-medium text-primary mb-2">
+                          {selectedVideo.category}
+                        </div>
+                        <h2 className="text-3xl font-display font-bold gradient-text mb-2">
+                          {selectedVideo.title}
+                        </h2>
+                        <p className="text-foreground/70">
+                          {selectedVideo.description}
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setSelectedVideo(null)}
+                      >
+                        Close
+                      </Button>
+                    </div>
+                    <div className="flex gap-4 text-sm text-foreground/60">
+                      <span>Client: {selectedVideo.client}</span>
+                      <span>Duration: {selectedVideo.duration}</span>
+                    </div>
+                    <div className="mt-6">
+                      <Button variant="hero" className="w-full sm:w-auto">
+                        <Play className="w-4 h-4 mr-2" />
+                        Watch Full Video
+                      </Button>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
-
-      {/* Video Modal */}
-      <AnimatePresence>
-        {selectedVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={() => setSelectedVideo(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="glass-strong max-w-4xl w-full rounded-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="aspect-video bg-black">
-                <img 
-                  src={selectedVideo.thumbnail} 
-                  alt={selectedVideo.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <div className="text-sm font-medium text-primary mb-2">
-                      {selectedVideo.category}
-                    </div>
-                    <h2 className="text-3xl font-display font-bold gradient-text mb-2">
-                      {selectedVideo.title}
-                    </h2>
-                    <p className="text-foreground/70">
-                      {selectedVideo.description}
-                    </p>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setSelectedVideo(null)}
-                  >
-                    Close
-                  </Button>
-                </div>
-                <div className="flex gap-4 text-sm text-foreground/60">
-                  <span>Client: {selectedVideo.client}</span>
-                  <span>Duration: {selectedVideo.duration}</span>
-                </div>
-                <div className="mt-6">
-                  <Button variant="hero" className="w-full sm:w-auto">
-                    <Play className="w-4 h-4 mr-2" />
-                    Watch Full Video
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <Footer />
     </div>

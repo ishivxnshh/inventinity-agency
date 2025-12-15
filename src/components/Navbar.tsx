@@ -185,8 +185,8 @@ export const Navbar = () => {
         <div className="bg-background/80 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl rounded-full px-6 py-3 flex items-center gap-8 md:gap-12">
 
           {/* Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center gap-3 group"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -361,9 +361,7 @@ export const Navbar = () => {
                   <span className="text-sm font-medium text-muted-foreground">Theme</span>
                   <ThemeToggle />
                 </div>
-                <Link to="/auth" className="block text-center text-sm font-medium text-muted-foreground hover:text-primary">
-                  Log in
-                </Link>
+
                 <div onClick={() => scrollToSection("#contact")} className="w-full cursor-pointer">
                   <Button className="w-full bg-primary text-primary-foreground rounded-md">
                     Book a Call

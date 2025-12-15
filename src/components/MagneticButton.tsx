@@ -11,6 +11,7 @@ export const MagneticButton = ({
   className = '',
   variant = 'default',
   size = 'default',
+  onClick,
   ...props
 }: MagneticButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
@@ -31,21 +32,23 @@ export const MagneticButton = ({
   };
 
   return (
-    <motion.div
+    <motion.button
+      ref={ref as any}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+      onMouseMove={handleMouseMove as any}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick as any}
+      className="inline-block"
     >
       <Button
-        ref={ref}
         variant={variant}
         size={size}
-        className={className}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        className={`${className}`}
         {...props}
       >
         {children}
       </Button>
-    </motion.div>
+    </motion.button>
   );
 };
