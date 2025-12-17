@@ -99,34 +99,39 @@ const Landing = () => {
 
   const portfolioProjects = [
     {
-      title: "E-Commerce Platform",
-      description: "Modern online store with AI recommendations",
-      tags: ["Web", "Design"],
-      image: "/work0.png",
+      title: "The Angaar Batch",
+      description: "EdTech / Community platform",
+      tags: ["Web", "EdTech"],
+      image: "/projects/work0.png",
+      link: "https://theangaarbatch.in/",
     },
     {
-      title: "Fitness Tracker App",
-      description: "Fast, responsive mobile application",
-      tags: ["Apps"],
-      image: "/work1.png",
+      title: "Chef Dhundho",
+      description: "Marketplace for hiring chefs",
+      tags: ["Web", "Marketplace"],
+      image: "/projects/work1.png",
+      link: "https://chefdhundho.com",
     },
     {
-      title: "AI Chatbot Assistant",
-      description: "Intelligent customer support automation",
-      tags: ["AI"],
-      image: "/work2.png",
+      title: "Shrinidhi Capital",
+      description: "Finance & research platform",
+      tags: ["Web", "Finance"],
+      image: "/projects/work2.png",
+      link: "https://shrinidhicapital.com",
     },
     {
-      title: "Brand Identity Redesign",
-      description: "Complete rebrand for tech startup",
-      tags: ["Design"],
-      image: "/work3.png",
+      title: "GenZDealZ.ai",
+      description: "AI-powered e-commerce deals",
+      tags: ["AI", "Web"],
+      image: "/projects/work3.png",
+      link: "https://genzdealz.ai",
     },
     {
       title: "Trynex",
-      description: "Advanced AI-based automation platform",
+      description: "AI fashion virtual try-on",
       tags: ["AI", "Web"],
-      image: "/work4.png",
+      image: "/projects/work4.png",
+      link: "https://trynex.vercel.app",
     },
   ];
 
@@ -138,21 +143,21 @@ const Landing = () => {
       linkedin: "https://linkedin.com/in/ishivxnshh",
     },
     {
-      name: "Sarah Chen",
-      role: "UI/UX Designer",
-      bio: "Creating beautiful, user-centered digital experiences",
+      name: "Shreyas Karade",
+      role: "Marketing Lead",
+      bio: "Strategic growth specialist driving digital marketing success",
       linkedin: "#",
     },
     {
-      name: "Marcus Rodriguez",
+      name: "Keshav Srivastava",
       role: "Video Editor",
-      bio: "Crafting compelling visual stories through motion",
+      bio: "Crafting compelling visual stories through motion and editing",
       linkedin: "#",
     },
     {
-      name: "Priya Sharma",
-      role: "Digital Marketing Lead",
-      bio: "Data-driven growth hacker with proven ROI track record",
+      name: "Shivansh Narain",
+      role: "Graphic Designer",
+      bio: "Creating stunning visual experiences that captivate audiences",
       linkedin: "#",
     },
   ];
@@ -467,7 +472,7 @@ const Landing = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground">
               About Inventinity

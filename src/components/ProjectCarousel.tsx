@@ -58,13 +58,17 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
             loop: true,
             align: "start",
             skipSnaps: false,
-            dragFree: true,
+            dragFree: false,
+            containScroll: "trimSnaps",
+            duration: 25,
+            inViewThreshold: 0.7,
         },
         [
             AutoScroll({
-                speed: 1.5,
-                stopOnInteraction: false,
+                speed: 1.2,
+                stopOnInteraction: true,
                 stopOnMouseEnter: true,
+                stopOnFocusIn: true,
             }),
         ]
     );
@@ -72,29 +76,51 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     const scrollPrev = useCallback(() => {
+        if (!emblaApi) return;
         const autoScroll = emblaApi?.plugins()?.autoScroll;
-        if (!autoScroll) return;
-
-        autoScroll.stop();
-        emblaApi?.scrollPrev();
+        if (autoScroll) autoScroll.stop();
+        
+        emblaApi.scrollPrev();
+        
+        // Resume autoscroll after a delay
+        setTimeout(() => {
+            if (autoScroll && !autoScroll.isPlaying()) {
+                autoScroll.play();
+            }
+        }, 3000);
     }, [emblaApi]);
 
     const scrollNext = useCallback(() => {
+        if (!emblaApi) return;
         const autoScroll = emblaApi?.plugins()?.autoScroll;
-        if (!autoScroll) return;
-
-        autoScroll.stop();
-        emblaApi?.scrollNext();
+        if (autoScroll) autoScroll.stop();
+        
+        emblaApi.scrollNext();
+        
+        // Resume autoscroll after a delay
+        setTimeout(() => {
+            if (autoScroll && !autoScroll.isPlaying()) {
+                autoScroll.play();
+            }
+        }, 3000);
     }, [emblaApi]);
 
     useEffect(() => {
         if (!emblaApi) return;
-        emblaApi.on("settle", () => {
-            const autoScroll = emblaApi.plugins().autoScroll;
+        
+        const autoScroll = emblaApi.plugins().autoScroll;
+        
+        const onSettle = () => {
             if (autoScroll && !autoScroll.isPlaying()) {
                 autoScroll.play();
             }
-        });
+        };
+        
+        emblaApi.on("settle", onSettle);
+        
+        return () => {
+            emblaApi.off("settle", onSettle);
+        };
     }, [emblaApi]);
 
     const onSelect = useCallback((api: any) => {
@@ -146,9 +172,9 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                             return (
                                 <div
                                     key={index}
-                                    className={`relative flex-[0_0_85%] md:flex-[0_0_600px] pr-4 md:pr-8 h-[250px] md:h-[360px] rounded-2xl transition-all duration-500 cursor-pointer ${isActive
+                                    className={`relative flex-[0_0_85%] md:flex-[0_0_600px] pr-4 md:pr-8 h-[250px] md:h-[360px] rounded-2xl transition-all duration-300 ease-out cursor-pointer ${isActive
                                         ? "scale-100 opacity-100"
-                                        : "scale-95 opacity-70"
+                                        : "scale-[0.97] opacity-60"
                                         }`}
                                     onClick={() => {
                                         if (isActive) {
