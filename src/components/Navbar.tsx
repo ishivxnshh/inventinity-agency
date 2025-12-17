@@ -181,8 +181,8 @@ export const Navbar = () => {
 
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-      <div className={`transition-all duration-300 ${isScrolled ? "scale-95 translate-y-2" : ""}`}>
-        <div className="bg-background/80 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl rounded-full px-6 py-3 flex items-center gap-8 md:gap-12">
+      <div className={`transition-all duration-300 ${isScrolled ? "md:scale-95 md:translate-y-2" : ""}`}>
+        <div className="bg-background/80 backdrop-blur-xl border border-white/10 dark:border-white/5 shadow-2xl rounded-full px-4 md:px-6 py-3 flex items-center gap-8 md:gap-12">
 
           {/* Logo */}
           <Link
@@ -205,7 +205,7 @@ export const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.08V12" />
               </svg>
             </div>
-            <span className="font-display font-bold text-xl tracking-tight hidden lg:block">Inventinity</span>
+            <span className="font-display font-bold text-xl tracking-tight hidden md:block">Inventinity</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -325,45 +325,57 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden border-t border-border/10 bg-background overflow-hidden"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[calc(100%-2rem)] max-w-md rounded-2xl border border-white/10 bg-background/95 backdrop-blur-xl shadow-2xl md:hidden overflow-hidden"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-6 py-4 flex flex-col gap-2 max-h-[75vh] overflow-y-auto">
               {navLinks.map((link) => (
                 link.hasDropdown ? (
                   <div key={link.name} className="space-y-2">
-                    <div className="text-sm font-medium text-foreground py-2">{link.name}</div>
-                    <div className="pl-4 space-y-2 border-l-2 border-border/30">
+                    <div className="text-sm font-medium text-foreground py-3 border-b border-border/10">
+                      {link.name}
+                    </div>
+                    <div className="pl-4 flex flex-col gap-2">
                       {serviceCategories.map(cat => (
-                        cat.items.map(item => (
-                          <button
-                            key={item.name}
-                            onClick={() => handleServiceClick(item.href)}
-                            className="block w-full text-left text-sm text-muted-foreground hover:text-primary py-1"
-                          >
-                            {item.name}
-                          </button>
-                        ))
+                        <div key={cat.label} className="space-y-1">
+                          <div className="text-xs font-semibold text-muted-foreground pt-2 pb-1 uppercase tracking-wider">
+                            {cat.label}
+                          </div>
+                          {cat.items.map(item => (
+                            <button
+                              key={item.name}
+                              type="button"
+                              onClick={() => handleServiceClick(item.href)}
+                              className="block w-full text-left text-sm text-foreground/80 hover:text-primary py-2 transition-colors"
+                            >
+                              {item.name}
+                            </button>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   </div>
                 ) : (
                   <button
                     key={link.name}
+                    type="button"
                     onClick={() => link.isRoute ? navigate(link.href) : scrollToSection(link.href)}
-                    className="block w-full text-left text-sm font-medium text-foreground py-2 hover:text-primary"
+                    className="block w-full text-left text-sm font-medium text-foreground py-3 hover:text-primary transition-colors border-b border-border/10 last:border-0"
                   >
                     {link.name}
                   </button>
                 )
               ))}
-              <div className="pt-4 border-t border-border/10 flex flex-col gap-3">
-                <div className="flex items-center justify-between">
+              <div className="pt-4 mt-2 border-t border-border/10 flex flex-col gap-4">
+                <div className="flex items-center justify-between py-1">
                   <span className="text-sm font-medium text-muted-foreground">Theme</span>
                   <ThemeToggle />
                 </div>
 
-                <div onClick={() => scrollToSection("#contact")} className="w-full cursor-pointer">
-                  <Button className="w-full bg-primary text-primary-foreground rounded-md">
+                <div 
+                  onClick={() => scrollToSection("#contact")} 
+                  className="w-full cursor-pointer"
+                >
+                  <Button type="button" className="w-full bg-primary text-primary-foreground rounded-xl py-6 text-base font-semibold shadow-lg hover:shadow-primary/25 transition-all">
                     Book a Call
                   </Button>
                 </div>

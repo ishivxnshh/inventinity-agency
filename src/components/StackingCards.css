@@ -157,7 +157,7 @@
   .stack-container {
     height: auto;
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 2rem 0;
     align-items: center;
     gap: 1.5rem;
     /* Space between cards vertically */

@@ -1,11 +1,19 @@
+import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
-import { useRef, useState } from "react";
 import * as random from "maath/random/dist/maath-random.esm";
 
 function ParticleWave(props: any) {
   const ref = useRef<any>();
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
+  const sphere = useMemo(() => {
+    const rawData = random.inSphere(new Float32Array(6000), { radius: 1.5 });
+    // Validation to prevent Nan errors
+    for (let i = 0; i < rawData.length; i++) {
+      if (isNaN(rawData[i])) rawData[i] = 0;
+    }
+    // Ensure it's a clean Float32Array
+    return new Float32Array(rawData);
+  }, []);
 
   useFrame((state, delta) => {
     if (ref.current) {

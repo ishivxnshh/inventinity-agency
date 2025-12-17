@@ -199,7 +199,6 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-background relative selection:bg-primary/20 cursor-none">
-      <CustomCursor />
       <ScrollProgress />
       <FloatingActionButton onOpenChange={setIsFabOpen} />
       <div className="bg-noise"></div>
@@ -282,7 +281,7 @@ const Landing = () => {
       </section>
 
       {/* USP Section */}
-      <section className="py-24 relative overflow-hidden bg-background">
+      <section className="py-16 md:py-24 relative overflow-hidden bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -296,7 +295,7 @@ const Landing = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyChooseUs.map((item, index) => (
               <motion.div
                 key={index}
@@ -326,7 +325,7 @@ const Landing = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-gradient-mesh relative overflow-hidden">
+      <section id="services" className="py-16 md:py-24 bg-gradient-mesh relative overflow-hidden">
         <ParallaxSection offset={30}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -334,7 +333,7 @@ const Landing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="text-center mb-16"
+              className="text-center mb-12 md:mb-16"
             >
               <Badge variant="section" className="mb-4">
                 What We Do
@@ -355,7 +354,7 @@ const Landing = () => {
       </section>
 
       {/* AI Integration Highlight */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-spotlight"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -364,7 +363,7 @@ const Landing = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
             <Badge variant="section" className="mb-4">
               ✨ AI-Powered Solutions
@@ -426,7 +425,7 @@ const Landing = () => {
       <ProcessSection />
 
       {/* Portfolio Section */}
-      <section id="portfolio" className="py-24 bg-gradient-mesh">
+      <section id="portfolio" className="py-16 md:py-24 bg-gradient-mesh">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="w-full">
             <ProjectCarousel projects={portfolioProjects} />
@@ -435,7 +434,7 @@ const Landing = () => {
       </section>
 
       {/* About & Team Section */}
-      <section id="about" className="py-24 bg-gradient-mesh relative overflow-hidden">
+      <section id="about" className="py-16 md:py-24 bg-gradient-mesh relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -516,14 +515,14 @@ const Landing = () => {
       <TestimonialsSection />
 
       {/* Pricing Section */}
-      <section className="py-24 bg-gradient-mesh">
+      <section className="py-16 md:py-24 bg-gradient-mesh">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
           >
             <Badge variant="section" className="mb-4">
               Transparent Pricing
@@ -601,7 +600,7 @@ const Landing = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 relative bg-gradient-mesh overflow-hidden">
+      <section id="contact" className="py-20 md:py-32 relative bg-gradient-mesh overflow-hidden">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

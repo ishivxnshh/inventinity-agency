@@ -9,6 +9,8 @@ import NotFound from "./pages/NotFound";
 
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { CustomCursor } from "@/components/ui/Cursor";
+import ScrollToTop from "@/components/ScrollToTop";
 
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
@@ -43,7 +45,9 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <CustomCursor />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/videos" element={<Videos />} />

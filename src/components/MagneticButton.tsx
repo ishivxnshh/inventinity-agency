@@ -32,23 +32,23 @@ export const MagneticButton = ({
   };
 
   return (
-    <motion.button
+    <motion.div
       ref={ref as any}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
       onMouseMove={handleMouseMove as any}
       onMouseLeave={handleMouseLeave}
-      onClick={onClick as any}
       className="inline-block"
     >
       <Button
         variant={variant}
         size={size}
         className={`${className}`}
+        onClick={onClick}
         {...props}
       >
         {children}
       </Button>
-    </motion.button>
+    </motion.div>
   );
 };
