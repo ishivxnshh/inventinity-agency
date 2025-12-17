@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { motion, PanInfo } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 
 const PROJECT_METADATA: Record<
@@ -29,8 +30,8 @@ const PROJECT_METADATA: Record<
     "work4.png": {
         title: "Trynex",
         category: "AI Fashion / Virtual Try-On",
-        link: "https://trynex.vercel.app"
-    }
+        link: "https://trynex.vercel.app",
+    },
 };
 
 interface Project {
@@ -49,38 +50,68 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
             category: "Web / AI",
             link: "#",
         };
-
         return { ...p, ...meta };
     });
 
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [cardWidth, setCardWidth] = useState(600);
+    const [emblaRef, emblaApi] = useEmblaCarousel(
+        {
+            loop: true,
+            align: "start",
+            skipSnaps: false,
+            dragFree: true,
+        },
+        [
+            AutoScroll({
+                speed: 1.5,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+            }),
+        ]
+    );
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const scrollPrev = useCallback(() => {
+        const autoScroll = emblaApi?.plugins()?.autoScroll;
+        if (!autoScroll) return;
+
+        autoScroll.stop();
+        emblaApi?.scrollPrev();
+    }, [emblaApi]);
+
+    const scrollNext = useCallback(() => {
+        const autoScroll = emblaApi?.plugins()?.autoScroll;
+        if (!autoScroll) return;
+
+        autoScroll.stop();
+        emblaApi?.scrollNext();
+    }, [emblaApi]);
 
     useEffect(() => {
-        const updateWidth = () => {
-            setCardWidth(window.innerWidth >= 768 ? 600 : 300);
-        };
+        if (!emblaApi) return;
+        emblaApi.on("settle", () => {
+            const autoScroll = emblaApi.plugins().autoScroll;
+            if (autoScroll && !autoScroll.isPlaying()) {
+                autoScroll.play();
+            }
+        });
+    }, [emblaApi]);
 
-        updateWidth();
-        window.addEventListener("resize", updateWidth);
-        return () => window.removeEventListener("resize", updateWidth);
+    const onSelect = useCallback((api: any) => {
+        setSelectedIndex(api.selectedScrollSnap());
     }, []);
 
-    const handleDragEnd = (_: any, info: PanInfo) => {
-        const swipeThreshold = 80;
+    useEffect(() => {
+        if (!emblaApi) return;
+        emblaApi.on("select", onSelect);
+        onSelect(emblaApi);
+    }, [emblaApi, onSelect]);
 
-        if (info.offset.x < -swipeThreshold) {
-            setActiveIndex((i) => Math.min(i + 1, items.length - 1));
-        }
-        else if (info.offset.x > swipeThreshold) {
-            setActiveIndex((i) => Math.max(i - 1, 0));
-        }
-    };
+
 
     return (
         <div className="relative w-full py-14 overflow-hidden">
-            <div className="max-w-7xl mx-auto relative">
-
+            <div className="max-w-7xl mx-auto relative px-4 md:px-0">
                 {/* Header */}
                 <div className="text-center mb-12 px-6 relative">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
@@ -90,20 +121,16 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                         Our Work
                     </h2>
 
-                    <div className="hidden md:flex absolute right-6 bottom-0 gap-4">
+                    <div className="hidden md:flex absolute right-6 bottom-0 gap-4 z-20">
                         <button
-                            onClick={() => setActiveIndex((i) => Math.max(i - 1, 0))}
-                            disabled={activeIndex === 0}
-                            className="p-3 rounded-full border border-primary/20 hover:bg-primary/5 disabled:opacity-30"
+                            onClick={scrollPrev}
+                            className="p-3 rounded-full border border-primary/20 hover:bg-primary/5 transition-colors"
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </button>
                         <button
-                            onClick={() =>
-                                setActiveIndex((i) => Math.min(i + 1, items.length - 1))
-                            }
-                            disabled={activeIndex === items.length - 1}
-                            className="p-3 rounded-full border border-primary/20 hover:bg-primary/5 disabled:opacity-30"
+                            onClick={scrollNext}
+                            className="p-3 rounded-full border border-primary/20 hover:bg-primary/5 transition-colors"
                         >
                             <ArrowRight className="w-5 h-5" />
                         </button>
@@ -111,64 +138,54 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                 </div>
 
                 {/* Carousel */}
-                <div className="px-4 md:px-0">
-                    <motion.div
-                        className="flex gap-8 cursor-grab active:cursor-grabbing w-fit"
-                        drag="x"
-                        dragConstraints={{
-                            left: -(items.length - 1) * (cardWidth + 32),
-                            right: 0,
-                        }}
-                        animate={{ x: -activeIndex * (cardWidth + 32) }}
-                        transition={{ type: "spring", stiffness: 260, damping: 30 }}
-                        onDragEnd={handleDragEnd}
-                    >
+                <div ref={emblaRef} className="overflow-hidden">
+                    <div className="flex">
                         {items.map((project, index) => {
-                            const isActive = index === activeIndex;
+                            const isActive = index === selectedIndex;
 
                             return (
-                                <motion.div
+                                <div
                                     key={index}
-                                    className={`relative flex-shrink-0 
-                    w-[300px] md:w-[600px] 
-                    h-[200px] md:h-[360px] 
-                    rounded-2xl overflow-hidden
-                    ${isActive ? "scale-100 opacity-100" : "scale-95 opacity-80"}
-                  `}
-                                    whileHover={{ y: -6 }}
+                                    className={`relative flex-[0_0_85%] md:flex-[0_0_600px] pr-4 md:pr-8 h-[250px] md:h-[360px] rounded-2xl transition-all duration-500 cursor-pointer ${isActive
+                                        ? "scale-100 opacity-100"
+                                        : "scale-95 opacity-70"
+                                        }`}
                                     onClick={() => {
-                                        if (!isActive) setActiveIndex(index);
-                                        else window.open(project.link, "_blank");
+                                        if (isActive) {
+                                            window.open(project.link, "_blank");
+                                        } else {
+                                            emblaApi?.scrollTo(index);
+                                        }
                                     }}
                                 >
-                                    <div className="absolute inset-0 bg-card border border-border/50 shadow-xl rounded-2xl overflow-hidden">
+                                    <div className="w-full h-full rounded-2xl overflow-hidden border border-white/10 relative group">
                                         <img
                                             src={project.image}
                                             alt={project.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         />
 
-                                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
-                                        <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                                            <p className="text-xs font-bold tracking-widest uppercase text-white/70 mb-1">
+                                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white text-left">
+                                            <p className="text-xs font-bold tracking-widest uppercase text-white/70 mb-2">
                                                 {project.category}
                                             </p>
-                                            <h3 className="text-2xl font-display font-bold">
+                                            <h3 className="text-2xl font-display font-bold mb-1">
                                                 {project.title}
                                             </h3>
 
                                             {isActive && (
-                                                <button className="inline-flex items-center gap-2 mt-2 text-sm hover:underline">
-                                                    View Case Study <ExternalLink className="w-4 h-4" />
-                                                </button>
+                                                <div className="flex items-center gap-2 text-sm text-primary/90 mt-2 font-medium">
+                                                    View Project <ExternalLink className="w-4 h-4" />
+                                                </div>
                                             )}
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             );
                         })}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </div>
