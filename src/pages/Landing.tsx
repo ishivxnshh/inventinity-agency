@@ -122,6 +122,12 @@ const Landing = () => {
       tags: ["Design"],
       image: "/work3.png",
     },
+    {
+      title: "Trynex",
+      description: "Advanced AI-based automation platform",
+      tags: ["AI", "Web"],
+      image: "/work4.png",
+    },
   ];
 
   const teamMembers = [
@@ -170,24 +176,44 @@ const Landing = () => {
     },
   ];
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
 
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Message sent successfully!", {
-        description: "We'll get back to you within 24 hours.",
+    try {
+      const response = await fetch("https://formspree.io/f/xgvggdgg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
       });
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        budget: "",
-        projectType: "",
-        message: "",
+
+      if (response.ok) {
+        toast.success("Message sent successfully!", {
+          description: "We'll get back to you within 24 hours.",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          budget: "",
+          projectType: "",
+          message: "",
+        });
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Formspree error:", errorData);
+        toast.error("Failed to send message.", {
+          description: "Please try again or contact us directly."
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Something went wrong.", {
+        description: "Please check your connection and try again."
       });
-    }, 1000);
+    }
   };
 
   const scrollToSection = (id: string) => {
@@ -325,7 +351,7 @@ const Landing = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 md:py-24 bg-gradient-mesh relative overflow-hidden">
+      <section id="services" className="py-16 md:py-24 bg-gradient-mesh relative overflow-hidden scroll-mt-24">
         <ParallaxSection offset={30}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -600,7 +626,7 @@ const Landing = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 md:py-32 relative bg-gradient-mesh overflow-hidden">
+      <section id="contact" className="py-20 md:py-32 relative bg-gradient-mesh overflow-hidden scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

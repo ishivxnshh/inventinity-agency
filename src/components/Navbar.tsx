@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,11 @@ import {
   Layers,
   Film,
   User,
-  Phone
+  Phone,
+  Sun,
+  Moon
 } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 
 interface ServiceItem {
   name: string;
@@ -97,10 +100,10 @@ const serviceCategories: ServiceCategory[] = [
 ];
 
 export const Navbar = () => {
+  const { theme, setTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -121,7 +124,15 @@ export const Navbar = () => {
     }
   }, [isServicesOpen]);
 
-  const navLinks = [
+  interface NavLink {
+    name: string;
+    href: string;
+    icon: React.ReactNode;
+    hasDropdown?: boolean;
+    isRoute?: boolean;
+  }
+
+  const navLinks: NavLink[] = [
     { name: "Services", href: "#services", hasDropdown: true, icon: <Sparkles className="w-4 h-4" /> },
     { name: "Portfolio", href: "#portfolio", icon: <Layers className="w-4 h-4" /> },
     { name: "Videos", href: "/videos", isRoute: true, icon: <Film className="w-4 h-4" /> },
@@ -133,30 +144,25 @@ export const Navbar = () => {
     setIsMobileMenuOpen(false);
     setIsServicesOpen(false);
 
+    const targetId = href.replace("#", "");
+
+    const scroll = () => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarHeight = 80;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - navbarHeight,
+          behavior: "smooth"
+        });
+      }
+    };
+
     if (location.pathname !== "/") {
       navigate("/");
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          const navbarHeight = 80;
-          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({
-            top: elementPosition - navbarHeight,
-            behavior: "smooth"
-          });
-        }
-      }, 100);
-      return;
-    }
-
-    const element = document.querySelector(href);
-    if (element) {
-      const navbarHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - navbarHeight,
-        behavior: "smooth"
-      });
+      setTimeout(scroll, 300);
+    } else {
+      setTimeout(scroll, 100);
     }
   };
 
@@ -249,7 +255,9 @@ export const Navbar = () => {
 
           {/* CTA Buttons - Compact */}
           <div className="flex items-center gap-3">
-            <ThemeToggle />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
             <div onClick={() => scrollToSection("#contact")} className="hidden md:block cursor-pointer">
               <Button size="sm" className="rounded-full px-5 bg-foreground text-background hover:bg-foreground/90 font-medium h-9">
                 Let's Talk
@@ -259,7 +267,7 @@ export const Navbar = () => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-muted-foreground hover:text-primary"
+              className="md:hidden p-2 text-muted-foreground hover:text-primary active:scale-95 transition-transform"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -325,7 +333,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[calc(100%-2rem)] max-w-md rounded-2xl border border-white/10 bg-background/95 backdrop-blur-xl shadow-2xl md:hidden overflow-hidden"
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[calc(100%-2rem)] max-w-md rounded-2xl border border-white/10 bg-background/95 backdrop-blur-xl shadow-2xl md:hidden overflow-hidden z-[60]"
           >
             <div className="px-6 py-4 flex flex-col gap-2 max-h-[75vh] overflow-y-auto">
               {navLinks.map((link) => (
@@ -366,16 +374,26 @@ export const Navbar = () => {
                 )
               ))}
               <div className="pt-4 mt-2 border-t border-border/10 flex flex-col gap-4">
-                <div className="flex items-center justify-between py-1">
-                  <span className="text-sm font-medium text-muted-foreground">Theme</span>
-                  <ThemeToggle />
-                </div>
-
-                <div 
-                  onClick={() => scrollToSection("#contact")} 
-                  className="w-full cursor-pointer"
+                <button
+                  type="button"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="flex items-center justify-between w-full py-2 group bg-transparent border-none p-0 cursor-pointer"
                 >
-                  <Button type="button" className="w-full bg-primary text-primary-foreground rounded-xl py-6 text-base font-semibold shadow-lg hover:shadow-primary/25 transition-all">
+                  <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    Switch Theme ({theme === 'dark' ? 'Dark' : 'Light'})
+                  </span>
+                  <div className="relative h-9 w-9 rounded-md border border-input bg-transparent shadow-sm flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  </div>
+                </button>
+
+                <div className="w-full">
+                  <Button
+                    type="button"
+                    onClick={() => scrollToSection("#contact")}
+                    className="w-full bg-primary text-primary-foreground rounded-xl py-6 text-base font-semibold shadow-lg hover:shadow-primary/25 transition-all"
+                  >
                     Book a Call
                   </Button>
                 </div>
