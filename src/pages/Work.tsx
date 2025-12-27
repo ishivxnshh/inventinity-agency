@@ -147,11 +147,10 @@ export default function Work() {
                 <button
                   key={tab.value}
                   onClick={() => setActiveTab(tab.value as any)}
-                  className={`px-6 py-3 rounded-full font-semibold transition-all ${
-                    activeTab === tab.value
+                  className={`px-6 py-3 rounded-full font-semibold transition-all ${activeTab === tab.value
                       ? "bg-primary text-primary-foreground shadow-lg"
                       : "bg-secondary/50 text-foreground hover:bg-secondary"
-                  }`}
+                    }`}
                 >
                   <span className="flex items-center gap-2">
                     {Icon && <Icon className="w-4 h-4" />}
@@ -203,7 +202,7 @@ export default function Work() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    
+
                     {/* Play Button Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center backdrop-blur-sm">
