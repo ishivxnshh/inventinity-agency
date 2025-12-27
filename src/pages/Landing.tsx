@@ -133,6 +133,20 @@ const Landing = () => {
       image: "/projects/work4.png",
       link: "https://trynex.vercel.app",
     },
+    {
+      title: "NISM Smart Prep",
+      description: "NISM exam preparation & quiz platform",
+      tags: ["EdTech", "SaaS", "Web"],
+      image: "/projects/work5.png",
+      link: "https://www.nismsmartprep.in/",
+    },
+    {
+      title: "DC Link Technologies",
+      description: "Corporate website for solar product manufacturer",
+      tags: ["Corporate", "Manufacturing", "Web"],
+      image: "/projects/work6.png",
+      link: "https://dclinktechnologies.vercel.app/",
+    }
   ];
 
   const teamMembers = [

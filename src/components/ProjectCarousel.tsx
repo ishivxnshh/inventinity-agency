@@ -32,6 +32,16 @@ const PROJECT_METADATA: Record<
         category: "AI Fashion / Virtual Try-On",
         link: "https://trynex.vercel.app",
     },
+    "work5.png": {
+        title: "NISM Smart Prep",
+        category: "EdTech / SaaS Platform",
+        link: "https://www.nismsmartprep.in/",
+    },
+    "work6.png": {
+        title: "DC Link Technologies",
+        category: "Corporate / Manufacturing",
+        link: "https://dclinktechnologies.vercel.app/",
+    }
 };
 
 interface Project {
@@ -66,9 +76,9 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
         [
             AutoScroll({
                 speed: 1.2,
-                stopOnInteraction: true,
+                stopOnInteraction: false,
                 stopOnMouseEnter: true,
-                stopOnFocusIn: true,
+                stopOnFocusIn: false,
             }),
         ]
     );
@@ -79,45 +89,45 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
         if (!emblaApi) return;
         const autoScroll = emblaApi?.plugins()?.autoScroll;
         if (autoScroll) autoScroll.stop();
-        
+
         emblaApi.scrollPrev();
-        
+
         // Resume autoscroll after a delay
         setTimeout(() => {
             if (autoScroll && !autoScroll.isPlaying()) {
                 autoScroll.play();
             }
-        }, 3000);
+        }, 50);
     }, [emblaApi]);
 
     const scrollNext = useCallback(() => {
         if (!emblaApi) return;
         const autoScroll = emblaApi?.plugins()?.autoScroll;
         if (autoScroll) autoScroll.stop();
-        
+
         emblaApi.scrollNext();
-        
+
         // Resume autoscroll after a delay
         setTimeout(() => {
             if (autoScroll && !autoScroll.isPlaying()) {
                 autoScroll.play();
             }
-        }, 3000);
+        }, 50);
     }, [emblaApi]);
 
     useEffect(() => {
         if (!emblaApi) return;
-        
+
         const autoScroll = emblaApi.plugins().autoScroll;
-        
+
         const onSettle = () => {
             if (autoScroll && !autoScroll.isPlaying()) {
                 autoScroll.play();
             }
         };
-        
+
         emblaApi.on("settle", onSettle);
-        
+
         return () => {
             emblaApi.off("settle", onSettle);
         };

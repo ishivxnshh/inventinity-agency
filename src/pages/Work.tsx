@@ -148,8 +148,8 @@ export default function Work() {
                   key={tab.value}
                   onClick={() => setActiveTab(tab.value as any)}
                   className={`px-6 py-3 rounded-full font-semibold transition-all ${activeTab === tab.value
-                      ? "bg-primary text-primary-foreground shadow-lg"
-                      : "bg-secondary/50 text-foreground hover:bg-secondary"
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-secondary/50 text-foreground hover:bg-secondary"
                     }`}
                 >
                   <span className="flex items-center gap-2">
@@ -195,7 +195,12 @@ export default function Work() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02]"
                 >
-                  <div className="aspect-video relative overflow-hidden">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block aspect-video relative overflow-hidden cursor-pointer"
+                  >
                     <img
                       src={item.thumbnail}
                       alt={item.title}
@@ -209,7 +214,7 @@ export default function Work() {
                         <Play className="w-8 h-8 text-primary-foreground ml-1" fill="currentColor" />
                       </div>
                     </div>
-                  </div>
+                  </a>
 
                   <div className="p-6">
                     <Badge className="mb-3">{item.category}</Badge>
@@ -269,14 +274,19 @@ export default function Work() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-accent/50 transition-all duration-300 hover:scale-[1.02]"
                 >
-                  <div className="aspect-video relative overflow-hidden">
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block aspect-video relative overflow-hidden cursor-pointer"
+                  >
                     <img
                       src={item.thumbnail}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  </div>
+                  </a>
 
                   <div className="p-6">
                     <Badge variant="outline" className="mb-3 border-accent/30 text-accent">
