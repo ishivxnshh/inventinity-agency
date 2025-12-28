@@ -770,17 +770,17 @@ const Landing = () => {
                   <p className="text-muted-foreground">Or reach us directly</p>
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                      href="mailto:shivanshmittalsde@gmail.com"
+                      href="mailto:shivanshnarain@gmail.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      shivanshmittalsde@gmail.com
+                      shivanshnarain@gmail.com
                     </a>
                     <span className="hidden sm:inline text-muted-foreground">•</span>
                     <a
-                      href="tel:+917452862988"
+                      href="tel:+919569983385"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      +91 74528 62988
+                      +91 95699 83385
                     </a>
                   </div>
 

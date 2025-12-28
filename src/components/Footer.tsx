@@ -55,7 +55,7 @@ export const Footer = () => {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="mailto:shivanshmittalsde@gmail.com"
+                href="mailto:shivanshnarain@gmail.com"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
               >
                 <Mail className="w-5 h-5" />
@@ -102,16 +102,16 @@ export const Footer = () => {
                 Ready to start your project?
               </p>
               <a
-                href="mailto:shivanshmittalsde@gmail.com"
+                href="mailto:shivanshnarain@gmail.com"
                 className="text-sm text-foreground hover:text-primary transition-colors block"
               >
-                shivanshmittalsde@gmail.com
+                shivanshnarain@gmail.com
               </a>
               <a
-                href="tel:+917452862988"
+                href="tel:+919569983385"
                 className="text-sm text-foreground hover:text-primary transition-colors block"
               >
-                +91 74528 62988
+                +91 95699 83385
               </a>
             </div>
           </div>
