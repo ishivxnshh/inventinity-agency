@@ -71,11 +71,11 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
             dragFree: false,
             containScroll: "trimSnaps",
             duration: 25,
-            inViewThreshold: 0.7,
+            inViewThreshold: 0.9,
         },
         [
             AutoScroll({
-                speed: 1.2,
+                speed: 2,
                 stopOnInteraction: false,
                 stopOnMouseEnter: true,
                 stopOnFocusIn: false,
@@ -83,7 +83,17 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
         ]
     );
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [slidesInView, setSlidesInView] = useState<number[]>([]);
+
+    const updateSlidesInView = useCallback((api: any) => {
+        setSlidesInView((prev) => {
+            const newSlidesInView = api.slidesInView();
+            if (newSlidesInView.length === prev.length && newSlidesInView.every((v: number, i: number) => v === prev[i])) {
+                return prev;
+            }
+            return newSlidesInView;
+        });
+    }, []);
 
     const scrollPrev = useCallback(() => {
         if (!emblaApi) return;
@@ -127,23 +137,22 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
         };
 
         emblaApi.on("settle", onSettle);
+        emblaApi.on("slidesInView", updateSlidesInView);
+        emblaApi.on("reInit", updateSlidesInView);
+
+        // Initial check
+        updateSlidesInView(emblaApi);
+
+        // Also listen to scroll for continuous updates
+        emblaApi.on("scroll", updateSlidesInView);
 
         return () => {
             emblaApi.off("settle", onSettle);
+            emblaApi.off("slidesInView", updateSlidesInView);
+            emblaApi.off("reInit", updateSlidesInView);
+            emblaApi.off("scroll", updateSlidesInView);
         };
-    }, [emblaApi]);
-
-    const onSelect = useCallback((api: any) => {
-        setSelectedIndex(api.selectedScrollSnap());
-    }, []);
-
-    useEffect(() => {
-        if (!emblaApi) return;
-        emblaApi.on("select", onSelect);
-        onSelect(emblaApi);
-    }, [emblaApi, onSelect]);
-
-
+    }, [emblaApi, updateSlidesInView]);
 
     return (
         <div className="relative w-full py-14 overflow-hidden">
@@ -177,21 +186,17 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                 <div ref={emblaRef} className="overflow-hidden">
                     <div className="flex">
                         {items.map((project, index) => {
-                            const isActive = index === selectedIndex;
+                            const isInView = slidesInView.includes(index);
 
                             return (
                                 <div
                                     key={index}
-                                    className={`relative flex-[0_0_85%] md:flex-[0_0_600px] pr-4 md:pr-8 h-[250px] md:h-[360px] rounded-2xl transition-all duration-300 ease-out cursor-pointer ${isActive
-                                        ? "scale-100 opacity-100"
-                                        : "scale-[0.97] opacity-60"
+                                    className={`relative flex-[0_0_85%] md:flex-[0_0_600px] pr-4 md:pr-8 h-[250px] md:h-[360px] rounded-2xl transition-all duration-300 ease-out cursor-pointer ${isInView
+                                            ? "scale-100 opacity-100"
+                                            : "scale-[0.97] opacity-60"
                                         }`}
                                     onClick={() => {
-                                        if (isActive) {
-                                            window.open(project.link, "_blank");
-                                        } else {
-                                            emblaApi?.scrollTo(index);
-                                        }
+                                        window.open(project.link, "_blank");
                                     }}
                                 >
                                     <div className="w-full h-full rounded-2xl overflow-hidden border border-white/10 relative group">
@@ -211,7 +216,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                                                 {project.title}
                                             </h3>
 
-                                            {isActive && (
+                                            {isInView && (
                                                 <div className="flex items-center gap-2 text-sm text-primary/90 mt-2 font-medium">
                                                     View Project <ExternalLink className="w-4 h-4" />
                                                 </div>
