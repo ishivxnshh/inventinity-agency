@@ -1,0 +1,56 @@
+.carousel {
+    --items: 0;
+    /* Set dynamically inline */
+    --carousel-duration: 60s;
+    /* Slower for better readability */
+    --carousel-item-width: 85vw;
+    --carousel-item-height: 250px;
+    --carousel-item-gap: 2rem;
+
+    width: 100%;
+    height: var(--carousel-item-height);
+    position: relative;
+    overflow: hidden;
+    /* Mask for fading edges */
+    mask-image: linear-gradient(to right,
+            transparent,
+            black 5% 95%,
+            transparent);
+}
+
+@media (min-width: 768px) {
+    .carousel {
+        --carousel-item-width: 600px;
+        --carousel-item-height: 360px;
+    }
+}
+
+.carousel>div.carousel-item {
+    position: absolute;
+    top: 0;
+    left: calc(100% + var(--carousel-item-gap));
+    /* Start off-screen to the right with gap */
+    width: var(--carousel-item-width);
+    height: var(--carousel-item-height);
+    border-radius: 1rem;
+
+    /* Animation setup */
+    will-change: transform;
+    animation-name: marquee;
+    animation-duration: var(--carousel-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    /* Delay calculation: (duration / items) * index * -1 */
+    animation-delay: calc(var(--carousel-duration) / var(--items) * var(--i) * -1);
+}
+
+/* Pause on hover */
+.carousel:hover>div.carousel-item {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    to {
+        transform: translateX(calc((var(--items) * (var(--carousel-item-width) + var(--carousel-item-gap))) * -1));
+    }
+}
