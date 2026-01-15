@@ -16,6 +16,7 @@ import { ProcessSection } from "@/components/ProcessSection";
 import { Scene } from "@/components/ui/Scene";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { CustomCursor } from "@/components/ui/Cursor";
+import { ContactPopup } from "@/components/ContactPopup";
 
 import {
   CodeXml,
@@ -146,6 +147,20 @@ const Landing = () => {
       tags: ["Corporate", "Manufacturing", "Web"],
       image: "/projects/work6.png",
       link: "https://dclinktechnologies.vercel.app/",
+    },
+    {
+      title: "ABCDesign Marketing Agency",
+      description: "Marketing & Agency Website",
+      tags: ["Marketing", "Web"],
+      image: "/projects/work7.png",
+      link: "https://abcdesign.vercel.app/",
+    },
+    {
+      title: "Qaidyn Partners – Fully Custom CMS",
+      description: "Content Management System & Corporate Platform",
+      tags: ["CMS", "Corporate", "Web"],
+      image: "/projects/work8.png",
+      link: "https://qaidyn-partners-rouge.vercel.app/",
     }
   ];
 
@@ -794,6 +809,7 @@ const Landing = () => {
         </div>
       </section>
 
+      <ContactPopup />
       <Footer />
     </div>
   );

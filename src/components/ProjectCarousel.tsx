@@ -3,10 +3,9 @@ import useEmblaCarousel from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 
-const PROJECT_METADATA: Record<
-    string,
-    { title: string; category: string; link: string }
-> = {
+const PROJECT_METADATA:
+    Record<string, { title: string; category: string; link: string }> = {
+
     "work0.png": {
         title: "The Angaar Batch",
         category: "EdTech / Community",
@@ -40,7 +39,17 @@ const PROJECT_METADATA: Record<
     "work6.png": {
         title: "DC Link Technologies",
         category: "Corporate / Manufacturing",
-        link: "https://dclinktechnologies.vercel.app/",
+        link: "https://dclink.in/",
+    },
+    "work7.png": {
+        title: "ABCDesign Marketing Agency",
+        category: "Marketing / Agency Website",
+        link: "https://abcdesign.vercel.app/"
+    },
+    "work8.png": {
+        title: "Qaidyn Partners – Fully Custom CMS",
+        category: "Content Management System / Corporate Platform",
+        link: "https://qaidyn-partners-rouge.vercel.app/"
     }
 };
 
@@ -192,8 +201,8 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                                 <div
                                     key={index}
                                     className={`relative flex-[0_0_85%] md:flex-[0_0_600px] pr-4 md:pr-8 h-[250px] md:h-[360px] rounded-2xl transition-all duration-300 ease-out cursor-pointer ${isInView
-                                            ? "scale-100 opacity-100"
-                                            : "scale-[0.97] opacity-60"
+                                        ? "scale-100 opacity-100"
+                                        : "scale-[0.97] opacity-60"
                                         }`}
                                     onClick={() => {
                                         window.open(project.link, "_blank");

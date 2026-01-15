@@ -11,9 +11,9 @@ import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/ui/Cursor";
 import ScrollToTop from "@/components/ScrollToTop";
-
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
+import { NavigationTracker } from "@/components/NavigationTracker";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +47,7 @@ const App = () => {
           <Sonner />
           <CustomCursor />
           <BrowserRouter>
+            <NavigationTracker />
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Landing />} />
