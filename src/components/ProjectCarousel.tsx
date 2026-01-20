@@ -42,7 +42,7 @@ const PROJECT_METADATA:
     "work7.png": {
         title: "ABCDesign Marketing Agency",
         category: "Marketing / Agency Website",
-        link: "https://abcdesign.vercel.app/"
+        link: "https://marketing.abcdesign.co.in/"
     },
     "work8.png": {
         title: "Qaidyn Partners – Fully Custom CMS",

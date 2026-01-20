@@ -146,14 +146,14 @@ const Landing = () => {
       description: "Corporate website for solar product manufacturer",
       tags: ["Corporate", "Manufacturing", "Web"],
       image: "/projects/work6.png",
-      link: "https://dclinktechnologies.vercel.app/",
+      link: "https://dclink.in/",
     },
     {
       title: "ABCDesign Marketing Agency",
       description: "Marketing & Agency Website",
       tags: ["Marketing", "Web"],
       image: "/projects/work7.png",
-      link: "https://abcdesign.vercel.app/",
+      link: "https://marketing.abcdesign.co.in/",
     },
     {
       title: "Qaidyn Partners – Fully Custom CMS",
