@@ -25,29 +25,39 @@ const PROJECT_METADATA:
         link: "https://genzdealz.ai",
     },
     "work4.png": {
+        title: "MediConnect",
+        category: "HealthTech / AI Platform",
+        link: "https://mediconnect-v1.vercel.app/",
+    },
+    "work5.png": {
         title: "Trynex",
         category: "AI Fashion / Virtual Try-On",
         link: "https://trynex.vercel.app",
     },
-    "work5.png": {
+    "work6.png": {
         title: "NISM Smart Prep",
         category: "EdTech / SaaS Platform",
         link: "https://www.nismsmartprep.in/",
     },
-    "work6.png": {
+    "work7.png": {
         title: "DC Link Technologies",
         category: "Corporate / Manufacturing",
         link: "https://dclink.in/",
     },
-    "work7.png": {
+    "work8.png": {
         title: "ABCDesign Marketing Agency",
         category: "Marketing / Agency Website",
         link: "https://marketing.abcdesign.co.in/"
     },
-    "work8.png": {
+    "work9.png": {
         title: "Qaidyn Partners – Fully Custom CMS",
         category: "Content Management System / Corporate Platform",
         link: "https://qaidyn-partners-rouge.vercel.app/"
+    },
+    "work10.png": {
+        title: "Niva Ecotech",
+        category: "Solar / Sustainability",
+        link: "https://nivaecotech.com"
     }
 };
 
@@ -79,7 +89,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                 {/* Header */}
                 <div className="text-center mb-12 px-6 relative z-10">
                     <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
-                        Selected Cases
+                        Engineering
                     </h3>
                     <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground">
                         Our Work
