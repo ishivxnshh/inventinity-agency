@@ -1,10 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { WorkShowcase } from "@/components/WorkShowcase";
 import { CustomCursor } from "@/components/ui/Cursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
 
 const Portfolio = () => {
     const portfolioProjects = [
@@ -94,26 +92,8 @@ const Portfolio = () => {
             <div className="bg-noise"></div>
             <Navbar />
 
-            <main className="pt-32 pb-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-center"
-                    >
-                        <Badge variant="section" className="mb-4">
-                            Our Work
-                        </Badge>
-                        <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                            Selected Portfolio
-                        </h1>
-                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            A collection of our best work across web development, AI, and design.
-                        </p>
-                    </motion.div>
-                </div>
-
-                <ProjectCarousel projects={portfolioProjects} />
+            <main className="pt-24 pb-16">
+                <WorkShowcase projects={portfolioProjects} />
             </main>
 
             <Footer />

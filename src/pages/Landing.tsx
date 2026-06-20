@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { GlowCard } from "@/components/GlowCard";
 import { StackingCards } from "@/components/StackingCards";
-import { ProjectCarousel } from "@/components/ProjectCarousel";
+import { WorkShowcase } from "@/components/WorkShowcase";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { FloatingActionButton } from "@/components/FloatingActionButton";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -493,11 +493,7 @@ const Landing = () => {
 
       {/* Portfolio Section */}
       <section id="portfolio" className="py-16 md:py-24 bg-gradient-mesh">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="w-full">
-            <ProjectCarousel projects={portfolioProjects} />
-          </div>
-        </div>
+        <WorkShowcase projects={portfolioProjects} />
       </section>
 
       {/* About & Team Section */}
