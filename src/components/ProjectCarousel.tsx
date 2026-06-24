@@ -52,7 +52,7 @@ const PROJECT_METADATA:
     "work9.png": {
         title: "Qaidyn Partners – Fully Custom CMS",
         category: "Content Management System / Corporate Platform",
-        link: "https://qaidyn-partners-rouge.vercel.app/"
+        link: "https://qaidyn.com"
     },
     "work10.png": {
         title: "Niva Ecotech",
@@ -68,6 +68,11 @@ const PROJECT_METADATA:
         title: "Kanakgrih",
         category: "Personal Finance / Wealth Management",
         link: "https://kanakgrih.com"
+    },
+    "work13.png": {
+        title: "Bastard",
+        category: "Fashion / E-commerce",
+        link: "https://bastard.fun"
     }
 };
 

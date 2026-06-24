@@ -75,14 +75,14 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
     "work9.png": {
         title: "Qaidyn Partners – Custom CMS",
         category: "CMS / Corporate Platform",
-        link: "https://qaidyn-partners-rouge.vercel.app/",
+        link: "https://qaidyn.com",
         tags: ["CMS", "Corporate", "Web"],
     },
     "work10.png": {
         title: "Niva Ecotech",
         category: "Solar / Sustainability",
         link: "https://nivaecotech.com",
-        tags: ["Web", "Corporate"],
+        tags: ["Solar", "Corporate", "Web"],
     },
     "work11.png": {
         title: "Viramah",
@@ -96,9 +96,15 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
         link: "https://kanakgrih.com",
         tags: ["Finance", "Web"],
     },
+    "work13.png": {
+        title: "Bastard",
+        category: "Fashion / E-commerce",
+        link: "https://bastard.fun",
+        tags: ["Marketplace", "Fashion", "Web"],
+    },
 };
 
-const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS"];
+const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS", "Solar", "Community", "Fashion", "Manufacturing"];
 
 interface WorkShowcaseProps {
     projects: Project[];

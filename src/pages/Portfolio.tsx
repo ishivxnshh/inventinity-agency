@@ -74,7 +74,7 @@ const Portfolio = () => {
             description: "Content Management System & Corporate Platform",
             tags: ["CMS", "Corporate", "Web"],
             image: "/projects/work9.png",
-            link: "https://qaidyn-partners-rouge.vercel.app/",
+            link: "https://qaidyn.com",
         },
         {
             title: "Niva Ecotech",
@@ -96,6 +96,13 @@ const Portfolio = () => {
             tags: ["Finance", "Web"],
             image: "/projects/work12.png",
             link: "https://kanakgrih.com",
+        },
+        {
+            title: "Bastard",
+            description: "Designer Oversized Hoodies & Fits E-commerce",
+            tags: ["Marketplace", "Fashion", "Web"],
+            image: "/projects/work13.png",
+            link: "https://bastard.fun",
         }
     ].reverse();
 
