@@ -102,9 +102,15 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
         link: "https://bastard.fun",
         tags: ["Marketplace", "Fashion", "Web"],
     },
+    "work14.png": {
+        title: "Contrasys",
+        category: "ERP / Garment Manufacturing",
+        link: "https://contrasys-software-for-garment-manu.vercel.app/",
+        tags: ["ERP", "Manufacturing", "Web"],
+    },
 };
 
-const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS", "Solar", "Community", "Fashion", "Manufacturing"];
+const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS", "Solar", "Community", "Fashion", "Manufacturing", "ERP"];
 
 interface WorkShowcaseProps {
     projects: Project[];

@@ -182,6 +182,13 @@ const Landing = () => {
       tags: ["Marketplace", "Fashion", "Web"],
       image: "/projects/work13.png",
       link: "https://bastard.fun",
+    },
+    {
+      title: "Contrasys",
+      description: "ERP Software for Garment Manufacturing",
+      tags: ["ERP", "Manufacturing", "Web"],
+      image: "/projects/work14.png",
+      link: "https://contrasys-software-for-garment-manu.vercel.app/",
     }
   ];
 

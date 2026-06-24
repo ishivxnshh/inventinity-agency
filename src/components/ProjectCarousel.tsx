@@ -73,6 +73,11 @@ const PROJECT_METADATA:
         title: "Bastard",
         category: "Fashion / E-commerce",
         link: "https://bastard.fun"
+    },
+    "work14.png": {
+        title: "Contrasys",
+        category: "ERP / Garment Manufacturing",
+        link: "https://contrasys-software-for-garment-manu.vercel.app/"
     }
 };
 
