@@ -79,9 +79,23 @@ const Portfolio = () => {
         {
             title: "Niva Ecotech",
             description: "Solar & Sustainability Solutions",
-            tags: ["Solar", "Web"],
+            tags: ["Solar", "Corporate", "Web"],
             image: "/projects/work10.png",
             link: "https://nivaecotech.com",
+        },
+        {
+            title: "Viramah",
+            description: "Co-living & Co-working Community Platform",
+            tags: ["Corporate", "Community", "Web"],
+            image: "/projects/work11.png",
+            link: "https://viramahstay.com",
+        },
+        {
+            title: "Kanakgrih",
+            description: "Personal Finance & Wealth Management Platform",
+            tags: ["Finance", "Web"],
+            image: "/projects/work12.png",
+            link: "https://kanakgrih.com",
         }
     ].reverse();
 

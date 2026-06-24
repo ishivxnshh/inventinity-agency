@@ -56,8 +56,18 @@ const PROJECT_METADATA:
     },
     "work10.png": {
         title: "Niva Ecotech",
-        category: "Solar / Sustainability",
+        category: "Solar / Sustainability / Corporate",
         link: "https://nivaecotech.com"
+    },
+    "work11.png": {
+        title: "Viramah",
+        category: "Co-living / Co-working Community",
+        link: "https://viramahstay.com"
+    },
+    "work12.png": {
+        title: "Kanakgrih",
+        category: "Personal Finance / Wealth Management",
+        link: "https://kanakgrih.com"
     }
 };
 

@@ -168,6 +168,13 @@ const Landing = () => {
       tags: ["CMS", "Corporate", "Web"],
       image: "/projects/work9.png",
       link: "https://qaidyn-partners-rouge.vercel.app/",
+    },
+    {
+      title: "Kanakgrih",
+      description: "Personal Finance & Wealth Management Platform",
+      tags: ["Finance", "Web"],
+      image: "/projects/work12.png",
+      link: "https://kanakgrih.com",
     }
   ];
 

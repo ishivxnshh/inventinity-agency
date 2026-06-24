@@ -84,6 +84,18 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
         link: "https://nivaecotech.com",
         tags: ["Web", "Corporate"],
     },
+    "work11.png": {
+        title: "Viramah",
+        category: "Co-living / Co-working Community",
+        link: "https://viramahstay.com",
+        tags: ["Corporate", "Community", "Web"],
+    },
+    "work12.png": {
+        title: "Kanakgrih",
+        category: "Personal Finance / Wealth Management",
+        link: "https://kanakgrih.com",
+        tags: ["Finance", "Web"],
+    },
 };
 
 const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS"];
