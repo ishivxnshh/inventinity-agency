@@ -78,6 +78,11 @@ const PROJECT_METADATA:
         title: "Contrasys",
         category: "ERP / Garment Manufacturing",
         link: "https://contrasys-software-for-garment-manu.vercel.app/"
+    },
+    "work15.png": {
+        title: "Gama LED",
+        category: "LED Displays / Corporate",
+        link: "https://gamaled.co.in"
     }
 };
 

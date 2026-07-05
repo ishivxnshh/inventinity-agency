@@ -108,6 +108,12 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
         link: "https://contrasys-software-for-garment-manu.vercel.app/",
         tags: ["ERP", "Manufacturing", "Web"],
     },
+    "work15.png": {
+        title: "Gama LED",
+        category: "LED Displays / Corporate",
+        link: "https://gamaled.co.in",
+        tags: ["Corporate", "Manufacturing", "Web"],
+    },
 };
 
 const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS", "Solar", "Community", "Fashion", "Manufacturing", "ERP"];
@@ -230,10 +236,6 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[300px]"
                     >
                         {filtered.map((project, index) => {
-                            // First card is featured (spans 2 columns on large screens)
-                            const isFeatured = index === 0 && filtered.length > 3;
-                            const isWide = index === 4 && filtered.length > 5;
-
                             return (
                                 <motion.a
                                     key={project.image + activeFilter}
@@ -242,10 +244,7 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                                     rel="noopener noreferrer"
                                     variants={itemVariants}
                                     layout
-                                    className={`group relative overflow-hidden rounded-2xl cursor-pointer block
-                                        ${isFeatured ? "sm:col-span-2 lg:col-span-2" : ""}
-                                        ${isWide ? "sm:col-span-2 lg:col-span-2" : ""}
-                                    `}
+                                    className="group relative overflow-hidden rounded-2xl cursor-pointer block"
                                     style={{ minHeight: "300px" }}
                                 >
                                     {/* Image */}
@@ -290,11 +289,7 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                                         </div>
 
                                         <h3
-                                            className={`font-display font-bold text-white leading-tight transition-all duration-300 ${
-                                                isFeatured
-                                                    ? "text-2xl md:text-3xl"
-                                                    : "text-xl"
-                                            }`}
+                                            className="font-display font-bold text-white leading-tight transition-all duration-300 text-xl"
                                         >
                                             {project.title}
                                         </h3>

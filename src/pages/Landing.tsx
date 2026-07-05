@@ -170,6 +170,20 @@ const Landing = () => {
       link: "https://qaidyn.com",
     },
     {
+      title: "Niva Ecotech",
+      description: "Solar & Sustainability Solutions",
+      tags: ["Solar", "Corporate", "Web"],
+      image: "/projects/work10.png",
+      link: "https://nivaecotech.com",
+    },
+    {
+      title: "Viramah",
+      description: "Co-living & Co-working Community Platform",
+      tags: ["Corporate", "Community", "Web"],
+      image: "/projects/work11.png",
+      link: "https://viramahstay.com",
+    },
+    {
       title: "Kanakgrih",
       description: "Personal Finance & Wealth Management Platform",
       tags: ["Finance", "Web"],
@@ -189,6 +203,13 @@ const Landing = () => {
       tags: ["ERP", "Manufacturing", "Web"],
       image: "/projects/work14.png",
       link: "https://contrasys-software-for-garment-manu.vercel.app/",
+    },
+    {
+      title: "Gama LED",
+      description: "LED Displays & Visual Solutions",
+      tags: ["Corporate", "Manufacturing", "Web"],
+      image: "/projects/work15.png",
+      link: "https://gamaled.co.in",
     }
   ];
 

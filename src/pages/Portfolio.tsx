@@ -110,6 +110,13 @@ const Portfolio = () => {
             tags: ["ERP", "Manufacturing", "Web"],
             image: "/projects/work14.png",
             link: "https://contrasys-software-for-garment-manu.vercel.app/",
+        },
+        {
+            title: "Gama LED",
+            description: "LED Displays & Visual Solutions",
+            tags: ["Corporate", "Manufacturing", "Web"],
+            image: "/projects/work15.png",
+            link: "https://gamaled.co.in",
         }
     ].reverse();
 
