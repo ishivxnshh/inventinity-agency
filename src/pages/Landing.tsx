@@ -151,7 +151,7 @@ const Landing = () => {
     {
       title: "DC Link Technologies",
       description: "Corporate website for solar product manufacturer",
-      tags: ["Corporate", "Manufacturing", "Web"],
+      tags: ["Solar", "Corporate", "Manufacturing", "Web"],
       image: "/projects/work7.png",
       link: "https://dclink.in/",
     },

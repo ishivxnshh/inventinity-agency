@@ -49,12 +49,12 @@ export function ContactPopup() {
 
         let timer: NodeJS.Timeout;
 
-        // Trigger 1: Timer (reduced to 3.5s for faster testing responsiveness)
+        // Trigger 1: Timer (20 seconds)
         console.log("Popup timer started");
         timer = setTimeout(() => {
             console.log("Popup triggered by timer");
             openPopup();
-        }, 3500);
+        }, 20000);
 
         // Trigger 2: Scroll (35%)
         const handleScroll = () => {

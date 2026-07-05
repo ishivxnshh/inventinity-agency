@@ -51,7 +51,6 @@ const App = () => {
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Landing />} />
-              <Route path="/portfolio" element={<Portfolio />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

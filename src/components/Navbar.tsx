@@ -81,13 +81,13 @@ const serviceCategories: ServiceCategory[] = [
         name: "Video Editing",
         description: "Professional video production",
         icon: <Video className="w-5 h-5" />,
-        href: "/portfolio"
+        href: "#portfolio"
       },
       {
         name: "Graphic Designing",
         description: "Brand identity & visuals",
         icon: <Palette className="w-5 h-5" />,
-        href: "/portfolio"
+        href: "#portfolio"
       },
       {
         name: "Digital Marketing",
@@ -134,7 +134,7 @@ export const Navbar = () => {
 
   const navLinks: NavLink[] = [
     { name: "Services", href: "#services", hasDropdown: true, icon: <Sparkles className="w-4 h-4" /> },
-    { name: "Portfolio", href: "/portfolio", isRoute: true, icon: <Layers className="w-4 h-4" /> },
+    { name: "Portfolio", href: "#portfolio", icon: <Layers className="w-4 h-4" /> },
     { name: "About", href: "#about", icon: <User className="w-4 h-4" /> },
     { name: "Contact", href: "#contact", icon: <Phone className="w-4 h-4" /> },
   ];

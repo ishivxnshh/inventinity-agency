@@ -64,7 +64,7 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
         title: "DC Link Technologies",
         category: "Corporate / Manufacturing",
         link: "https://dclink.in/",
-        tags: ["Corporate", "Web"],
+        tags: ["Solar", "Corporate", "Manufacturing", "Web"],
     },
     "work8.png": {
         title: "ABCDesign Marketing Agency",
@@ -116,7 +116,7 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
     },
 };
 
-const ALL_TAGS = ["All", "AI", "Web", "EdTech", "Finance", "Marketplace", "HealthTech", "Marketing", "Corporate", "SaaS", "CMS", "Solar", "Community", "Fashion", "Manufacturing", "ERP"];
+const ALL_TAGS = ["All", "Corporate", "AI", "Manufacturing", "Finance", "Marketplace", "Solar"];
 
 interface WorkShowcaseProps {
     projects: Project[];
@@ -208,7 +208,7 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex flex-wrap justify-center gap-2 mb-12 px-4"
+                className="flex overflow-x-auto justify-start md:justify-center gap-2 mb-12 px-4 pb-4 whitespace-nowrap no-scrollbar w-full max-w-full"
             >
                 {ALL_TAGS.map((tag) => (
                     <button
@@ -233,7 +233,7 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                         variants={containerVariants}
                         initial="hidden"
                         animate="show"
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-[300px]"
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
                     >
                         {filtered.map((project, index) => {
                             return (
@@ -244,14 +244,13 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                                     rel="noopener noreferrer"
                                     variants={itemVariants}
                                     layout
-                                    className="group relative overflow-hidden rounded-2xl cursor-pointer block"
-                                    style={{ minHeight: "300px" }}
+                                    className="group relative overflow-hidden rounded-2xl cursor-pointer block aspect-video"
                                 >
                                     {/* Image */}
                                     <img
                                         src={project.image}
                                         alt={project.title}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+                                        className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.07]"
                                     />
 
                                     {/* Base gradient overlay */}

@@ -141,7 +141,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                                 />
 
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
