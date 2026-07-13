@@ -114,6 +114,12 @@ const PROJECT_METADATA: Record<string, ProjectMeta> = {
         link: "https://gamaled.co.in",
         tags: ["Corporate", "Manufacturing", "Web"],
     },
+    "work16.png": {
+        title: "Creative Advertising",
+        category: "Marketing / Agency",
+        link: "https://creative-advertising-vhrj.vercel.app",
+        tags: ["Marketing", "Corporate", "Web"],
+    },
 };
 
 const ALL_TAGS = ["All", "Corporate", "AI", "Manufacturing", "Finance", "Marketplace", "Solar"];

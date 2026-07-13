@@ -1,0 +1,121 @@
+[
+  {
+    "imageName": "work0.png",
+    "title": "The Angaar Batch",
+    "category": "EdTech / Community",
+    "link": "https://theangaarbatch.in/",
+    "tags": ["Web", "EdTech"]
+  },
+  {
+    "imageName": "work1.png",
+    "title": "Chef Dhundho",
+    "category": "Marketplace / Hiring",
+    "link": "https://chefdhundho.com",
+    "tags": ["Web", "Marketplace"]
+  },
+  {
+    "imageName": "work2.png",
+    "title": "Shrinidhi Capital",
+    "category": "Finance / Research",
+    "link": "https://shrinidhicapital.com",
+    "tags": ["Web", "Finance"]
+  },
+  {
+    "imageName": "work3.png",
+    "title": "GenZDealZ.ai",
+    "category": "AI E-commerce / Deals",
+    "link": "https://genzdealz.ai",
+    "tags": ["AI", "Web"]
+  },
+  {
+    "imageName": "work4.png",
+    "title": "MediConnect",
+    "category": "HealthTech / AI Platform",
+    "link": "https://mediconnect-v1.vercel.app/",
+    "tags": ["AI", "HealthTech", "Web"]
+  },
+  {
+    "imageName": "work5.png",
+    "title": "Trynex",
+    "category": "AI Fashion / Virtual Try-On",
+    "link": "https://trynex.vercel.app",
+    "tags": ["AI", "Web"]
+  },
+  {
+    "imageName": "work6.png",
+    "title": "NISM Smart Prep",
+    "category": "EdTech / SaaS Platform",
+    "link": "https://www.nismsmartprep.in/",
+    "tags": ["EdTech", "SaaS", "Web"]
+  },
+  {
+    "imageName": "work7.png",
+    "title": "DC Link Technologies",
+    "category": "Corporate / Manufacturing",
+    "link": "https://dclink.in/",
+    "tags": ["Solar", "Corporate", "Manufacturing", "Web"]
+  },
+  {
+    "imageName": "work8.png",
+    "title": "ABCDesign Marketing Agency",
+    "category": "Marketing / Agency",
+    "link": "https://marketing.abcdesign.co.in/",
+    "tags": ["Marketing", "Web"]
+  },
+  {
+    "imageName": "work9.png",
+    "title": "Qaidyn Partners – Custom CMS",
+    "category": "CMS / Corporate Platform",
+    "link": "https://qaidyn.com",
+    "tags": ["CMS", "Corporate", "Web"]
+  },
+  {
+    "imageName": "work10.png",
+    "title": "Niva Ecotech",
+    "category": "Solar / Sustainability",
+    "link": "https://nivaecotech.com",
+    "tags": ["Solar", "Corporate", "Web"]
+  },
+  {
+    "imageName": "work11.png",
+    "title": "Viramah",
+    "category": "Co-living / Co-working Community",
+    "link": "https://viramahstay.com",
+    "tags": ["Corporate", "Community", "Web"]
+  },
+  {
+    "imageName": "work12.png",
+    "title": "Kanakgrih",
+    "category": "Personal Finance / Wealth Management",
+    "link": "https://kanakgrih.com",
+    "tags": ["Finance", "Web"]
+  },
+  {
+    "imageName": "work13.png",
+    "title": "Bastard",
+    "category": "Fashion / E-commerce",
+    "link": "https://bastard.fun",
+    "tags": ["Marketplace", "Fashion", "Web"]
+  },
+  {
+    "imageName": "work14.png",
+    "title": "Contrasys",
+    "category": "ERP / Garment Manufacturing",
+    "link": "https://contrasys-software-for-garment-manu.vercel.app/",
+    "tags": ["ERP", "Manufacturing", "Web"]
+  },
+  {
+    "imageName": "work15.png",
+    "title": "Gama LED",
+    "category": "LED Displays / Corporate",
+    "link": "https://gamaled.co.in",
+    "tags": ["Corporate", "Manufacturing", "Web"]
+  },
+  {
+    "imageName": "work16.png",
+    "title": "Creative Advertising",
+    "category": "Marketing / Agency",
+    "link": "https://creative-advertising-vhrj.vercel.app",
+    "tags": ["Marketing", "Corporate", "Web"]
+  }
+]

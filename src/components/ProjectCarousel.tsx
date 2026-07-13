@@ -83,6 +83,11 @@ const PROJECT_METADATA:
         title: "Gama LED",
         category: "LED Displays / Corporate",
         link: "https://gamaled.co.in"
+    },
+    "work16.png": {
+        title: "Creative Advertising",
+        category: "Marketing / Agency",
+        link: "https://creative-advertising-vhrj.vercel.app"
     }
 };
 

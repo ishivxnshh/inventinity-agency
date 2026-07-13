@@ -210,6 +210,13 @@ const Landing = () => {
       tags: ["Corporate", "Manufacturing", "Web"],
       image: "/projects/work15.png",
       link: "https://gamaled.co.in",
+    },
+    {
+      title: "Creative Advertising",
+      description: "Creative Advertising Agency Website",
+      tags: ["Marketing", "Corporate", "Web"],
+      image: "/projects/work16.png",
+      link: "https://creative-advertising-vhrj.vercel.app",
     }
   ];
 
