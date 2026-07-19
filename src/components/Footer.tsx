@@ -31,7 +31,7 @@ export const Footer = () => {
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <span className="font-display text-xl font-bold text-foreground">
-                Inventinity
+                Sululu Labs
               </span>
             </Link>
             <p className="text-muted-foreground text-sm">
@@ -121,7 +121,7 @@ export const Footer = () => {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Inventinity. All rights reserved.
+              © {new Date().getFullYear()} Sululu Labs. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">

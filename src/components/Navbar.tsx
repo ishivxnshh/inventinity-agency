@@ -210,7 +210,7 @@ export const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.08V12" />
               </svg>
             </div>
-            <span className="font-display font-bold text-xl tracking-tight hidden md:block">Inventinity</span>
+            <span className="font-display font-bold text-xl tracking-tight hidden md:block">Sululu Labs</span>
           </Link>
 
           {/* Desktop Navigation */}

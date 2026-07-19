@@ -407,7 +407,7 @@ const Landing = () => {
             className="text-center mb-12"
           >
             <h2 className="font-display text-3xl md:text-4xl font-bold mb-4 text-foreground">
-              Why Choose <span className="text-primary">Inventinity</span>?
+              Why Choose <span className="text-primary">Sululu Labs</span>?
             </h2>
           </motion.div>
 
@@ -556,7 +556,7 @@ const Landing = () => {
             className="text-center mb-12"
           >
             <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              About Inventinity
+              About Sululu Labs
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               We're a full-stack digital agency that believes in end-to-end execution.

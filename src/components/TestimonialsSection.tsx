@@ -9,7 +9,7 @@ const testimonials = [
     role: 'CEO, TechStart Inc.',
     company: 'TechStart',
     rating: 5,
-    text: 'Inventinity transformed our digital presence completely. Their AI integration saved us 40% on customer support costs while improving satisfaction scores.',
+    text: 'Sululu Labs transformed our digital presence completely. Their AI integration saved us 40% on customer support costs while improving satisfaction scores.',
     image: 'SJ',
     highlight: 'Saved 40% costs'
   },
@@ -36,7 +36,7 @@ const testimonials = [
     role: 'Founder, AI Solutions',
     company: 'AI Solutions',
     rating: 5,
-    text: 'Working with Inventinity felt like having an in-house team. They understood our vision and executed flawlessly with cutting-edge technology.',
+    text: 'Working with Sululu Labs felt like having an in-house team. They understood our vision and executed flawlessly with cutting-edge technology.',
     image: 'DP',
     highlight: 'Perfect execution'
   }
