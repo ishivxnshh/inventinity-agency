@@ -8,7 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/ui/Cursor";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useEffect, useState } from "react";
-import Lenis from "@studio-freight/lenis";
+import Lenis from "lenis";
 import { NavigationTracker } from "@/components/NavigationTracker";
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
