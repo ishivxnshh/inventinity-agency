@@ -1,6 +1,6 @@
-
+"use client";
 import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 /**
  * Tracks navigation to prevent popups on internal navigation.
@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
  * - This ensures that if a user goes Landing -> Portfolio -> Landing, the popup won't show on the second visit.
  */
 export const NavigationTracker = () => {
-  const location = useLocation();
+  const pathname = usePathname();
   const isFirstRender = useRef(true);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const NavigationTracker = () => {
 
     // On any subsequent navigation, set the flag
     sessionStorage.setItem("isInternalNav", "true");
-  }, [location]);
+  }, [pathname]);
 
   return null;
 };

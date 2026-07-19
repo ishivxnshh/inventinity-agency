@@ -1,5 +1,7 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -104,8 +106,8 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,8 +159,8 @@ export const Navbar = () => {
       }
     };
 
-    if (location.pathname !== "/") {
-      navigate("/");
+    if (pathname !== "/") {
+      router.push("/");
       setTimeout(scroll, 300);
     } else {
       setTimeout(scroll, 100);
@@ -170,7 +172,7 @@ export const Navbar = () => {
     setIsMobileMenuOpen(false);
 
     if (href.startsWith("/")) {
-      navigate(href);
+      router.push(href);
       window.scrollTo({ top: 0, behavior: "instant" });
     } else {
       scrollToSection(href);
@@ -179,9 +181,9 @@ export const Navbar = () => {
 
   const isActiveService = (href: string) => {
     if (href.startsWith("/")) {
-      return location.pathname === href;
+      return pathname === href;
     }
-    return location.pathname === "/" && location.hash === href;
+    return pathname === "/" && typeof window !== "undefined" && window.location.hash === href;
   };
 
   return (
@@ -191,7 +193,7 @@ export const Navbar = () => {
 
           {/* Logo */}
           <Link
-            to="/"
+            href="/"
             className="flex items-center gap-3 group"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -217,8 +219,8 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center gap-1 bg-secondary/50 rounded-full p-1 border border-white/5">
             {navLinks.map((link) => {
               const isActive = link.isRoute
-                ? location.pathname === link.href
-                : (location.pathname === "/" && location.hash === link.href);
+                ? pathname === link.href
+                : (pathname === "/" && typeof window !== "undefined" && window.location.hash === link.href);
 
               return (
                 <div key={link.name} className="relative group/nav">
@@ -236,7 +238,7 @@ export const Navbar = () => {
                     </button>
                   ) : (
                     <button
-                      onClick={() => link.isRoute ? navigate(link.href) : scrollToSection(link.href)}
+                      onClick={() => link.isRoute ? router.push(link.href) : scrollToSection(link.href)}
                       className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 relative ${isActive ? "bg-background text-foreground shadow-[0_0_20px_rgba(var(--primary),0.15)] ring-1 ring-primary/10" : "hover:text-primary hover:bg-background/50 text-muted-foreground"}`}
                     >
                       {link.icon}
@@ -365,7 +367,7 @@ export const Navbar = () => {
                   <button
                     key={link.name}
                     type="button"
-                    onClick={() => link.isRoute ? navigate(link.href) : scrollToSection(link.href)}
+                    onClick={() => link.isRoute ? router.push(link.href) : scrollToSection(link.href)}
                     className="block w-full text-left text-sm font-medium text-foreground py-3 hover:text-primary transition-colors border-b border-border/10 last:border-0"
                   >
                     {link.name}
