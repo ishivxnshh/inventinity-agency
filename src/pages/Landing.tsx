@@ -229,13 +229,13 @@ const Landing = () => {
       linkedin: "https://linkedin.com/in/ishivxnshh",
     },
     {
-      name: "Shreyas Karade",
+      name: "Shivam Mishra",
       role: "Marketing Lead",
       bio: "Strategic growth specialist driving digital marketing success",
       linkedin: "#",
     },
     {
-      name: "Keshav Srivastava",
+      name: "Shaurya Manoj",
       role: "Video Editor",
       bio: "Crafting compelling visual stories through motion and editing",
       linkedin: "#",
@@ -838,17 +838,17 @@ const Landing = () => {
                   <p className="text-muted-foreground">Or reach us directly</p>
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                      href="mailto:shivanshnarain@gmail.com"
+                      href="mailto:shivanshmittalsde@gmail.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      shivanshnarain@gmail.com
+                      shivanshmittalsde@gmail.com
                     </a>
                     <span className="hidden sm:inline text-muted-foreground">•</span>
                     <a
-                      href="tel:+919569983385"
+                      href="tel:+917452862988"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      +91 95699 83385
+                      +91 74528 62988
                     </a>
                   </div>
 

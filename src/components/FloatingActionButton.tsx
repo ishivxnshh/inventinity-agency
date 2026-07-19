@@ -34,7 +34,7 @@ export const FloatingActionButton = ({ onOpenChange }: FloatingActionButtonProps
     {
       icon: <MessageCircle className="w-5 h-5" />,
       label: 'Chat on WhatsApp',
-      onClick: () => window.open('https://wa.me/919569983385?text=Hi%20Sululu%20Labs,%20I%20want%20to%20disscuss%20a%20project', '_blank'),
+      onClick: () => window.open('https://wa.me/917452862988?text=Hi%20Sululu%20Labs,%20I%20want%20to%20disscuss%20a%20project', '_blank'),
       color: 'bg-card border border-primary/20 text-primary hover:bg-primary/5'
     },
     {
@@ -46,7 +46,7 @@ export const FloatingActionButton = ({ onOpenChange }: FloatingActionButtonProps
     {
       icon: <Mail className="w-5 h-5" />,
       label: 'Email Us',
-      onClick: () => window.location.href = 'mailto:shivanshnarain@gmail.com',
+      onClick: () => window.location.href = 'mailto:shivanshmittalsde@gmail.com',
       color: 'bg-card border border-primary/20 text-primary hover:bg-primary/5'
     }
   ];
