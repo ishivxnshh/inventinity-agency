@@ -350,10 +350,7 @@ const Landing = () => {
               className="flex flex-col gap-4 mb-12"
             >
               <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-                From mvp to enterprise scale, we handle design, development, and AI integration.
-              </p>
-              <p className="text-xl md:text-2xl font-medium text-foreground">
-                Your full-stack partner for digital growth.
+                Sit Back. Feel Sululu. Bring Your Vision to Life.
               </p>
             </motion.div>
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -194,25 +195,15 @@ export const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 group"
+            className="flex items-center group -ml-2 mr-8 md:-ml-4 md:mr-12"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <div className="relative w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full border border-primary/20 group-hover:bg-primary/20 transition-colors">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="w-5 h-5 text-primary"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.27 6.96 12 12.01l8.73-5.05" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 22.08V12" />
-              </svg>
+            <div className="relative flex items-center justify-center">
+              <Image src="/logos/logo-dark-removebg-preview.png" alt="Sululu Labs" width={240} height={64} className="dark:hidden h-8 w-auto object-contain scale-[1.7] md:scale-[2.5] origin-left" />
+              <Image src="/logos/logo-light-removebg-preview.png" alt="Sululu Labs" width={240} height={64} className="hidden dark:block h-8 w-auto object-contain scale-[1.7] md:scale-[2.5] origin-left" />
             </div>
-            <span className="font-display font-bold text-xl tracking-tight hidden md:block">Sululu Labs</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -143,7 +143,7 @@ export function ContactPopup() {
     return (
         <Dialog open={isOpen} onOpenChange={handleOpenChange}>
             <DialogContent
-                className="sm:max-w-[600px] border-white/10 bg-background/60 backdrop-blur-xl p-0 overflow-hidden gap-0 shadow-2xl"
+                className="w-[95vw] sm:max-w-[600px] max-h-[90dvh] overflow-y-auto border-white/10 bg-background/95 backdrop-blur-xl p-0 gap-0 shadow-2xl rounded-xl"
                 onInteractOutside={(e) => {
                     // Optional: if we want to force interaction, prevent closing. 
                     // But instructions say "Close via: Close icon, ESC key".

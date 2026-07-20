@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Sparkles, Linkedin, Github, Mail } from "lucide-react";
 
 export const Footer = () => {
@@ -27,15 +28,13 @@ export const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center group-hover:shadow-glow transition-all">
-                <Sparkles className="w-6 h-6 text-white" />
+              <div className="relative flex items-center justify-center mb-4">
+                <Image src="/logos/logo-dark-removebg-preview.png" alt="Sululu Labs" width={300} height={96} className="dark:hidden h-24 w-auto object-contain scale-125 origin-left" />
+                <Image src="/logos/logo-light-removebg-preview.png" alt="Sululu Labs" width={300} height={96} className="hidden dark:block h-24 w-auto object-contain scale-125 origin-left" />
               </div>
-              <span className="font-display text-xl font-bold text-foreground">
-                Sululu Labs
-              </span>
             </Link>
-            <p className="text-muted-foreground text-sm">
-              Full-stack digital agency delivering end-to-end tech and creative solutions.
+            <p className="text-muted-foreground text-sm mt-4">
+              Sit Back. Feel Sululu. Bring Your Vision to Life.
             </p>
             <div className="flex gap-3">
               <a

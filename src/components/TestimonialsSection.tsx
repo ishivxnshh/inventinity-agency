@@ -5,39 +5,39 @@ import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
-    role: 'CEO, TechStart Inc.',
-    company: 'TechStart',
+    name: 'Akshay Shah',
+    role: 'Founder GenZdealZ.ai',
+    company: 'GenZdealZ.ai',
     rating: 5,
     text: 'Sululu Labs transformed our digital presence completely. Their AI integration saved us 40% on customer support costs while improving satisfaction scores.',
-    image: 'SJ',
+    image: 'AS',
     highlight: 'Saved 40% costs'
   },
   {
-    name: 'Michael Chen',
-    role: 'Product Manager, GrowthCo',
-    company: 'GrowthCo',
+    name: 'Naman Sharma',
+    role: 'Founder The Angaar Batch',
+    company: 'The Angaar Batch',
     rating: 5,
-    text: 'The team delivered our mobile app 2 weeks ahead of schedule with zero bugs. Their communication and technical expertise are unmatched.',
-    image: 'MC',
+    text: 'The team delivered our web app 2 weeks ahead of schedule with zero bugs. Their communication and technical expertise are unmatched.',
+    image: 'NS',
     highlight: 'Zero bugs, early delivery'
   },
   {
-    name: 'Emily Rodriguez',
-    role: 'Marketing Director, BrandFlow',
-    company: 'BrandFlow',
+    name: 'Manas Daruka',
+    role: 'Founder Gama LED',
+    company: 'Gama LED',
     rating: 5,
     text: 'Their full-stack approach meant we only needed one partner for everything - design, development, and marketing. ROI was 3x our investment in 6 months.',
-    image: 'ER',
+    image: 'MD',
     highlight: '3x ROI in 6 months'
   },
   {
-    name: 'David Park',
-    role: 'Founder, AI Solutions',
-    company: 'AI Solutions',
+    name: 'Shreyas Karade',
+    role: 'Founder ChefDhundo',
+    company: 'ChefDhundo',
     rating: 5,
     text: 'Working with Sululu Labs felt like having an in-house team. They understood our vision and executed flawlessly with cutting-edge technology.',
-    image: 'DP',
+    image: 'SK',
     highlight: 'Perfect execution'
   }
 ];
@@ -64,7 +64,7 @@ export const TestimonialsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
@@ -72,37 +72,38 @@ export const TestimonialsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="h-full"
             >
               <Card className="glass-strong h-full group hover:scale-[1.02] transition-transform duration-300">
-                <CardContent className="p-8 relative">
-                  <Quote className="absolute top-6 right-6 w-12 h-12 text-accent/10 group-hover:text-accent/20 transition-colors" />
+                <CardContent className="p-6 relative flex flex-col h-full">
+                  <Quote className="absolute top-6 right-6 w-10 h-10 text-accent/10 group-hover:text-accent/20 transition-colors" />
                   
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-                      <span className="text-lg font-bold text-primary-foreground">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+                      <span className="text-base font-bold text-primary-foreground">
                         {testimonial.image}
                       </span>
                     </div>
                     <div>
-                      <h4 className="font-display font-semibold text-lg mb-1">
+                      <h4 className="font-display font-semibold text-base mb-1">
                         {testimonial.name}
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground line-clamp-1">
                         {testimonial.role}
                       </p>
-                      <div className="flex items-center gap-1 mt-2">
+                      <div className="flex items-center gap-1 mt-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                          <Star key={i} className="w-3 h-3 fill-accent text-accent" />
                         ))}
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-foreground/90 mb-4 leading-relaxed">
+                  <p className="text-foreground/90 text-sm mb-4 leading-relaxed flex-grow">
                     "{testimonial.text}"
                   </p>
 
-                  <Badge variant="outline" className="border-accent/20 text-accent">
+                  <Badge variant="outline" className="border-accent/20 text-accent self-start mt-auto">
                     {testimonial.highlight}
                   </Badge>
                 </CardContent>
@@ -121,7 +122,7 @@ export const TestimonialsSection = () => {
         >
           <p className="text-muted-foreground mb-6">Trusted by innovative companies worldwide</p>
           <div className="flex flex-wrap justify-center gap-8 items-center opacity-40">
-            {['TechStart', 'GrowthCo', 'BrandFlow', 'AI Solutions'].map((company) => (
+            {['GenZdealZ.ai', 'The Angaar Batch', 'Gama LED', 'ChefDhundo'].map((company) => (
               <div key={company} className="text-xl font-semibold text-foreground/30">
                 {company}
               </div>
