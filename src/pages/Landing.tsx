@@ -271,7 +271,7 @@ const Landing = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://formspree.io/f/xgvggdgg", {
+      const response = await fetch("https://formspree.io/f/mrenkpqo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
