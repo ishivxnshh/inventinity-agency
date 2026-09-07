@@ -1,95 +1,6 @@
 import "./ProjectCarousel.css";
 import { ExternalLink } from "lucide-react";
-
-const PROJECT_METADATA:
-    Record<string, { title: string; category: string; link: string }> = {
-
-    "work0.png": {
-        title: "The Angaar Batch",
-        category: "EdTech / Community",
-        link: "https://theangaarbatch.in/",
-    },
-    "work1.png": {
-        title: "Chef Dhundho",
-        category: "Marketplace / Hiring",
-        link: "https://chefdhundho.com",
-    },
-    "work2.png": {
-        title: "Shrinidhi Capital",
-        category: "Finance / Research",
-        link: "https://shrinidhicapital.com",
-    },
-    "work3.png": {
-        title: "GenZDealZ.ai",
-        category: "AI E-commerce / Deals",
-        link: "https://genzdealz.ai",
-    },
-    "work4.png": {
-        title: "MediConnect",
-        category: "HealthTech / AI Platform",
-        link: "https://mediconnect-v1.vercel.app/",
-    },
-    "work5.png": {
-        title: "Trynex",
-        category: "AI Fashion / Virtual Try-On",
-        link: "https://trynex.vercel.app",
-    },
-    "work6.png": {
-        title: "NISM Smart Prep",
-        category: "EdTech / SaaS Platform",
-        link: "https://www.nismsmartprep.in/",
-    },
-    "work7.png": {
-        title: "DC Link Technologies",
-        category: "Corporate / Manufacturing",
-        link: "https://dclink.in/",
-    },
-    "work8.png": {
-        title: "ABCDesign Marketing Agency",
-        category: "Marketing / Agency Website",
-        link: "https://marketing.abcdesign.co.in/"
-    },
-    "work9.png": {
-        title: "Qaidyn Partners – Fully Custom CMS",
-        category: "Content Management System / Corporate Platform",
-        link: "https://qaidyn.com"
-    },
-    "work10.png": {
-        title: "Niva Ecotech",
-        category: "Solar / Sustainability / Corporate",
-        link: "https://nivaecotech.com"
-    },
-    "work11.png": {
-        title: "Viramah",
-        category: "Co-living / Co-working Community",
-        link: "https://viramahstay.com"
-    },
-    "work12.png": {
-        title: "Kanakgrih",
-        category: "Personal Finance / Wealth Management",
-        link: "https://kanakgrih.com"
-    },
-    "work13.png": {
-        title: "Bastard",
-        category: "Fashion / E-commerce",
-        link: "https://bastard.fun"
-    },
-    "work14.png": {
-        title: "Contrasys",
-        category: "ERP / Garment Manufacturing",
-        link: "https://contrasys-software-for-garment-manu.vercel.app/"
-    },
-    "work15.png": {
-        title: "Gama LED",
-        category: "LED Displays / Corporate",
-        link: "https://gamaled.co.in"
-    },
-    "work16.png": {
-        title: "Creative Advertising",
-        category: "Marketing / Agency",
-        link: "https://creative-advertising-vhrj.vercel.app"
-    }
-};
+import projectsData from "@/assets/projects.json";
 
 interface Project {
     image: string;
@@ -103,7 +14,7 @@ export const ProjectCarousel = ({ projects }: ProjectCarouselProps) => {
     // Prepare items with metadata
     const items = projects.map((p) => {
         const filename = p.image.split("/").pop() ?? "";
-        const meta = PROJECT_METADATA[filename] ?? {
+        const meta = projectsData.find((d) => d.imageName === filename) ?? {
             title: "Digital Product",
             category: "Web / AI",
             link: "#",

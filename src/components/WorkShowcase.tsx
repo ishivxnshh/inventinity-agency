@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
+import projectsData from "@/assets/projects.json";
 
 interface Project {
     image: string;
@@ -9,120 +10,6 @@ interface Project {
     tags?: string[];
     link?: string;
 }
-
-interface ProjectMeta {
-    title: string;
-    category: string;
-    link: string;
-    tags: string[];
-}
-
-const PROJECT_METADATA: Record<string, ProjectMeta> = {
-    "work0.png": {
-        title: "The Angaar Batch",
-        category: "EdTech / Community",
-        link: "https://theangaarbatch.in/",
-        tags: ["Web", "EdTech"],
-    },
-    "work1.png": {
-        title: "Chef Dhundho",
-        category: "Marketplace / Hiring",
-        link: "https://chefdhundho.com",
-        tags: ["Web", "Marketplace"],
-    },
-    "work2.png": {
-        title: "Shrinidhi Capital",
-        category: "Finance / Research",
-        link: "https://shrinidhicapital.com",
-        tags: ["Web", "Finance"],
-    },
-    "work3.png": {
-        title: "GenZDealZ.ai",
-        category: "AI E-commerce / Deals",
-        link: "https://genzdealz.ai",
-        tags: ["AI", "Web"],
-    },
-    "work4.png": {
-        title: "MediConnect",
-        category: "HealthTech / AI Platform",
-        link: "https://mediconnect-v1.vercel.app/",
-        tags: ["AI", "HealthTech", "Web"],
-    },
-    "work5.png": {
-        title: "Trynex",
-        category: "AI Fashion / Virtual Try-On",
-        link: "https://trynex.vercel.app",
-        tags: ["AI", "Web"],
-    },
-    "work6.png": {
-        title: "NISM Smart Prep",
-        category: "EdTech / SaaS Platform",
-        link: "https://www.nismsmartprep.in/",
-        tags: ["EdTech", "SaaS", "Web"],
-    },
-    "work7.png": {
-        title: "DC Link Technologies",
-        category: "Corporate / Manufacturing",
-        link: "https://dclink.in/",
-        tags: ["Solar", "Corporate", "Manufacturing", "Web"],
-    },
-    "work8.png": {
-        title: "ABCDesign Marketing Agency",
-        category: "Marketing / Agency",
-        link: "https://marketing.abcdesign.co.in/",
-        tags: ["Marketing", "Web"],
-    },
-    "work9.png": {
-        title: "Qaidyn Partners – Custom CMS",
-        category: "CMS / Corporate Platform",
-        link: "https://qaidyn.com",
-        tags: ["CMS", "Corporate", "Web"],
-    },
-    "work10.png": {
-        title: "Niva Ecotech",
-        category: "Solar / Sustainability",
-        link: "https://nivaecotech.com",
-        tags: ["Solar", "Corporate", "Web"],
-    },
-    "work11.png": {
-        title: "Viramah",
-        category: "Co-living / Co-working Community",
-        link: "https://viramahstay.com",
-        tags: ["Corporate", "Community", "Web"],
-    },
-    "work12.png": {
-        title: "Kanakgrih",
-        category: "Personal Finance / Wealth Management",
-        link: "https://kanakgrih.com",
-        tags: ["Finance", "Web"],
-    },
-    "work13.png": {
-        title: "Bastard",
-        category: "Fashion / E-commerce",
-        link: "https://bastard.fun",
-        tags: ["Marketplace", "Fashion", "Web"],
-    },
-    "work14.png": {
-        title: "Contrasys",
-        category: "ERP / Garment Manufacturing",
-        link: "https://contrasys-software-for-garment-manu.vercel.app/",
-        tags: ["ERP", "Manufacturing", "Web"],
-    },
-    "work15.png": {
-        title: "Gama LED",
-        category: "LED Displays / Corporate",
-        link: "https://gamaled.co.in",
-        tags: ["Corporate", "Manufacturing", "Web"],
-    },
-    "work16.png": {
-        title: "Creative Advertising",
-        category: "Marketing / Agency",
-        link: "https://creative-advertising-vhrj.vercel.app",
-        tags: ["Marketing", "Corporate", "Web"],
-    },
-};
-
-const ALL_TAGS = ["All", "Corporate", "AI", "Manufacturing", "Finance", "Marketplace", "Solar"];
 
 interface WorkShowcaseProps {
     projects: Project[];
@@ -133,14 +20,22 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
 
     const enriched = projects.map((p, i) => {
         const filename = p.image.split("/").pop() ?? "";
-        const meta = PROJECT_METADATA[filename] ?? {
-            title: p.title ?? "Digital Product",
-            category: p.description ?? "Web / AI",
-            link: p.link ?? "#",
-            tags: p.tags ?? ["Web"],
+        const meta = projectsData.find((d) => d.imageName === filename);
+        return { 
+            ...p, 
+            title: meta?.title ?? p.title ?? "Digital Product",
+            category: meta?.category ?? p.description ?? "Web / AI",
+            link: meta?.link ?? p.link ?? "#",
+            tags: meta?.tags ?? p.tags ?? ["Web"],
+            idx: i 
         };
-        return { ...p, ...meta, idx: i };
     });
+
+    const allTags = useMemo(() => {
+        const tags = new Set<string>();
+        enriched.forEach(p => p.tags.forEach(t => tags.add(t)));
+        return ["All", ...Array.from(tags)];
+    }, [enriched]);
 
     const filtered =
         activeFilter === "All"
@@ -216,7 +111,7 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex overflow-x-auto justify-start md:justify-center gap-2 mb-12 px-4 pb-4 whitespace-nowrap no-scrollbar w-full max-w-full"
             >
-                {ALL_TAGS.map((tag) => (
+                {allTags.map((tag) => (
                     <button
                         key={tag}
                         onClick={() => setActiveFilter(tag)}
