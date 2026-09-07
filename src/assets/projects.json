@@ -117,5 +117,19 @@
     "category": "Marketing / Agency",
     "link": "https://creative-advertising-vhrj.vercel.app",
     "tags": ["Marketing", "Corporate", "Web"]
+  },
+  {
+    "imageName": "work17.png",
+    "title": "Housick",
+    "category": "Real Estate / Property Platform",
+    "link": "https://housick.vercel.app/",
+    "tags": ["Real Estate", "Web"]
+  },
+  {
+    "imageName": "work18.png",
+    "title": "Prachin Luxe",
+    "category": "Jewellery / E-commerce",
+    "link": "https://prachin-jewellery.vercel.app/",
+    "tags": ["Jewellery", "E-commerce", "Web"]
   }
 ]

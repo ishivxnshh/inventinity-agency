@@ -109,7 +109,7 @@ export const WorkShowcase = ({ projects }: WorkShowcaseProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex overflow-x-auto justify-start md:justify-center gap-2 mb-12 px-4 pb-4 whitespace-nowrap no-scrollbar w-full max-w-full"
+                className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12 px-4 pb-4 w-full max-w-full"
             >
                 {allTags.map((tag) => (
                     <button
