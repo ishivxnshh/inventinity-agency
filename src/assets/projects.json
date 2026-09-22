@@ -78,55 +78,48 @@
   },
   {
     "imageName": "work11.png",
-    "title": "Viramah",
-    "category": "Co-living / Co-working Community",
-    "link": "https://viramahstay.com",
-    "tags": ["Corporate", "Community", "Web"]
-  },
-  {
-    "imageName": "work12.png",
     "title": "Kanakgrih",
     "category": "Personal Finance / Wealth Management",
     "link": "https://kanakgrih.com",
     "tags": ["Finance", "Web"]
   },
   {
-    "imageName": "work13.png",
+    "imageName": "work12.png",
     "title": "Bastard",
     "category": "Fashion / E-commerce",
     "link": "https://bastard.fun",
     "tags": ["Marketplace", "Fashion", "Web"]
   },
   {
-    "imageName": "work14.png",
+    "imageName": "work13.png",
     "title": "Contrasys",
     "category": "ERP / Garment Manufacturing",
     "link": "https://contrasys-software-for-garment-manu.vercel.app/",
     "tags": ["ERP", "Manufacturing", "Web"]
   },
   {
-    "imageName": "work15.png",
+    "imageName": "work14.png",
     "title": "Gama LED",
     "category": "LED Displays / Corporate",
     "link": "https://gamaled.co.in",
     "tags": ["Corporate", "Manufacturing", "Web"]
   },
   {
-    "imageName": "work16.png",
+    "imageName": "work15.png",
     "title": "Creative Advertising",
     "category": "Marketing / Agency",
     "link": "https://creative-advertising-vhrj.vercel.app",
     "tags": ["Marketing", "Corporate", "Web"]
   },
   {
-    "imageName": "work17.png",
+    "imageName": "work16.png",
     "title": "Housick",
     "category": "Real Estate / Property Platform",
     "link": "https://housick.vercel.app/",
     "tags": ["Real Estate", "Web"]
   },
   {
-    "imageName": "work18.png",
+    "imageName": "work17.png",
     "title": "Prachin Luxe",
     "category": "Jewellery / E-commerce",
     "link": "https://prachin-jewellery.vercel.app/",
