@@ -38,7 +38,7 @@ export const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com/in/sulululabs"
+                href="https://www.linkedin.com/company/sulululabs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
