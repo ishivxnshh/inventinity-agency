@@ -124,5 +124,12 @@
     "category": "Jewellery / E-commerce",
     "link": "https://prachin-jewellery.vercel.app/",
     "tags": ["Jewellery", "E-commerce", "Web"]
+  },
+  {
+    "imageName": "work18.png",
+    "title": "Adrizo",
+    "category": "Corporate / Web",
+    "link": "https://adrizo.com",
+    "tags": ["Web", "Corporate"]
   }
 ]
