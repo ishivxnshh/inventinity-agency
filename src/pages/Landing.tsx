@@ -722,10 +722,10 @@ const Landing = () => {
                   <p className="text-muted-foreground">Or reach us directly</p>
                   <div className="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                      href="mailto:shivanshmittalsde@gmail.com"
+                      href="mailto:hello@sulululabs.com"
                       className="text-foreground hover:text-primary transition-colors"
                     >
-                      shivanshmittalsde@gmail.com
+                      hello@sulululabs.com
                     </a>
                     <span className="hidden sm:inline text-muted-foreground">•</span>
                     <a

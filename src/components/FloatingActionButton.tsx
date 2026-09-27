@@ -46,7 +46,7 @@ export const FloatingActionButton = ({ onOpenChange }: FloatingActionButtonProps
     {
       icon: <Mail className="w-5 h-5" />,
       label: 'Email Us',
-      onClick: () => window.location.href = 'mailto:shivanshmittalsde@gmail.com',
+      onClick: () => window.location.href = 'mailto:hello@sulululabs.com',
       color: 'bg-card border border-primary/20 text-primary hover:bg-primary/5'
     }
   ];

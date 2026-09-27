@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Sparkles, Linkedin, Github, Mail } from "lucide-react";
+import { Sparkles, Linkedin, Instagram, Facebook, Mail } from "lucide-react";
 
 export const Footer = () => {
   const quickLinks = [
@@ -38,7 +38,7 @@ export const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://linkedin.com/in/ishivxnshh"
+                href="https://linkedin.com/in/sulululabs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
@@ -46,15 +46,23 @@ export const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://github.com/ishivxnshh"
+                href="https://instagram.com/sulululabs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
               >
-                <Github className="w-5 h-5" />
+                <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="mailto:shivanshmittalsde@gmail.com"
+                href="https://facebook.com/sulululabs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:hello@sulululabs.com"
                 className="w-10 h-10 rounded-lg bg-secondary/50 hover:bg-primary/20 flex items-center justify-center transition-colors"
               >
                 <Mail className="w-5 h-5" />
@@ -101,10 +109,10 @@ export const Footer = () => {
                 Ready to start your project?
               </p>
               <a
-                href="mailto:shivanshmittalsde@gmail.com"
+                href="mailto:hello@sulululabs.com"
                 className="text-sm text-foreground hover:text-primary transition-colors block"
               >
-                shivanshmittalsde@gmail.com
+                hello@sulululabs.com
               </a>
               <a
                 href="tel:+917452862988"
