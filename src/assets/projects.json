@@ -131,5 +131,12 @@
     "category": "Fashion / E-commerce",
     "link": "https://adrizo.com",
     "tags": ["Fashion", "E-commerce", "Web"]
+  },
+  {
+    "imageName": "work19.png",
+    "title": "Azaro",
+    "category": "Furniture / E-commerce",
+    "link": "https://azarochairs.com",
+    "tags": ["Furniture", "E-commerce", "Web"]
   }
 ]
